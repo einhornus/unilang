@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Text</title>
+    <title>Linkify</title>
 </head>
 <body>
 
 
-Input:
-<br>
 <textarea type="text" id="text" cols="100" rows="20" value=""></textarea>
 <br>
 <input type="button" onclick="f()" value="Linkify">
@@ -89,14 +87,20 @@ Input:
     words = []
     last = ""
     for(let i = 0; i<text.length; i++){
-      if(rus(text[i])){
-        last+=text[i]
-      }
-      else{
-        words.push(last)
-        words.push(text[i])
-        last = ""
-      }
+
+        if (rus(text[i])) {
+          last += text[i]
+        } else {
+          words.push(last)
+          if(text[i] == "\n" || text[i] == "\r"){
+            words.push("<br>")
+          }
+          else {
+            words.push(text[i])
+          }
+          last = ""
+        }
+
     }
     words.push(last)
 
