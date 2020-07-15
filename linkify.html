@@ -88,13 +88,13 @@ Input:
     res = ""
     words = []
     last = ""
-    for(let i = 0; i<linkify.length; i++){
-      if(rus(linkify[i])){
-        last+=linkify[i]
+    for(let i = 0; i<text.length; i++){
+      if(rus(text[i])){
+        last+=text[i]
       }
       else{
         words.push(last)
-        words.push(linkify[i])
+        words.push(text[i])
         last = ""
       }
     }
