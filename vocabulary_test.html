@@ -8,6 +8,9 @@
 
 
 
+
+
+
 <p id ="info"></p>
 
 
@@ -39,7 +42,6 @@
 <p id ="content"></p>
 
 
-
 <script >
 
     let dict = null
@@ -53,6 +55,13 @@
     let mode = false
     let buttons = []
     let diff = 1
+
+    //document.getElementById("all").style.visibility = 'hidden';
+
+    function startup(){
+        document.getElementById("start").style.visibility = 'hidden';
+        document.getElementById("all").style.visibility = 'hidden';
+    }
 
     function init(){
         buttons.push(document.getElementById("b0"));
