@@ -13,9 +13,55 @@
 
 <p id ="p"></p>
 
+<p id ="content"></p>
+
+
+
 <script >
 
   let dict = null
+
+  function hndwrd(wrd){
+      /*
+      var inputVal = document.getElementById("text").value;
+      var p = document.getElementById("p")
+      p.innerHTML = handleText(inputVal);
+      */
+
+      cont = readTextFile2(wrd+".html")
+      var content = document.getElementById("content")
+      content.innerHTML = cont;
+      //window.open(wrd+".html", '_blank');
+
+  }
+
+
+  function readTextFile2(file)
+  {
+      res = ""
+      var rawFile = new XMLHttpRequest();
+      rawFile.open("GET", file, false);
+      rawFile.onreadystatechange = function ()
+      {
+          if(rawFile.readyState === 4)
+          {
+              if(rawFile.status === 200 || rawFile.status == 0)
+              {
+                  var allText = rawFile.responseText;
+
+                  let lines = allText.split(/\r?\n/);
+                  //console.log(lines);
+
+                  for (let i = 0; i < lines.length; i++) {
+                      let line = lines[i].split(";");
+                      res+=line
+                  }
+              }
+          }
+      }
+      rawFile.send(null);
+      return res
+  }
 
   function readTextFile(file)
   {
@@ -105,7 +151,9 @@
         }
 
     }
-    words.push(last)
+    words.push(last);
+
+    console.log(words);
 
     for(let i = 0; i<words.length; i++){
       if(words[i].length>0) {
@@ -115,11 +163,12 @@
         if (dict[w] == undefined) {
           res += upperfy(words[i], isUpper)
         } else {
-          res += "<a href=" + dict[w][1] + ".html>" + upperfy(dict[w][0], isUpper) + "</a>"
+          res += "<a href=#  onclick=hndwrd(\'"+dict[w][1]+"\');>" + upperfy(dict[w][0], isUpper) + "</a>"
         }
         res += ""
       }
     }
+    console.log(res)
     return res
   }
 
