@@ -3,12 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Vocabulary test</title>
+
+
+    <style>
+        table{
+            width: 100%;
+        }
+
+        td {
+            width:50%;
+            overflow: hidden;
+            vertical-align: top;
+            border: 1px solid black;
+        }
+
+
+        table.center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
 </head>
 <body>
-
-
-
-
 
 
 <p id ="info"></p>
@@ -285,7 +302,7 @@
 
     }
 
-    readTextFile3("vocab.txt")
+    readTextFile3("vocab2.txt")
     init()
     nextQuestion()
 
@@ -341,13 +358,14 @@
                 poses.push(document.documentElement.scrollTop)
             }
         }
+
         /*
         var inputVal = document.getElementById("text").value;
         var p = document.getElementById("p")
         p.innerHTML = handleText(inputVal);
         */
 
-        cont = readTextFile2(wrd+".html")
+        cont = readTextFile2("articles//"+wrd+".html")
         var content = document.getElementById("content")
         content.innerHTML = cont;
         //window.open(wrd+".html", '_blank');
