@@ -328,6 +328,8 @@ function hndwrd(wrd) {
 
         dw = dict[wrd]
 
+        console.log("DW", dw)
+
         if (dw.length == 1) {
             if (dw[0][1][0] == dw[0][1][0].toUpperCase()) {
                 cont = readTextFile2("articles//_" + dw[0][1] + ".html")
@@ -338,12 +340,14 @@ function hndwrd(wrd) {
             content1.innerHTML = cont;
         } else {
             let stop = false
+            let st = 0
             cont = "<h1>Disambiguation</h1> <br> <ol>"
             for (let j = 0; j < dw.length; j++) {
                 console.log(dw[j])
                 cont += "<li>" + dw[j][0] + " is a form of <a href=\"#\" onclick=\"hndwrd('" + dw[j][1] + "')\">" + dw[j][1] + "</a></li>"
                 if (dw[j][1] == wrd){
                     stop = true
+                    st = j
                 }
             }
             cont += "<ul>"
@@ -353,10 +357,10 @@ function hndwrd(wrd) {
                 content1.innerHTML = cont;
             }
             else{
-                if (dw[0][1][0] == dw[0][1][0].toUpperCase()) {
-                    cont = readTextFile2("articles//_" + dw[0][1] + ".html")
+                if (dw[st][1][0] == dw[st][1][0].toUpperCase()) {
+                    cont = readTextFile2("articles//_" + dw[st][1] + ".html")
                 } else {
-                    cont = readTextFile2("articles//" + dw[0][1] + ".html")
+                    cont = readTextFile2("articles//" + dw[st][1] + ".html")
                 }
                 pc.innerHTML = getPic(wrd)
                 content1.innerHTML = cont;
