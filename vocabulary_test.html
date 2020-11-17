@@ -457,10 +457,11 @@
 
                     for (let i = 0; i < lines.length; i++) {
                         let line = lines[i].split(";");
-                        if(line[0]=="версиям"){
-                            console.log(line);
-                        }
                         if (line.length == 3) {
+                            if(){
+
+                            }
+
                             dict[line[0]] = [line[1], line[2]]
                         }
                     }
@@ -468,6 +469,8 @@
             }
         }
         rawFile.send(null);
+
+        console.log(dict)
     }
 
 </script>

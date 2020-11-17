@@ -1,62 +1,16 @@
-
 <!DOCTYPE html>
-<html lang="en">
 <head>
+    <script type="text/javascript" src="words_handler.js"></script>
     <script type="text/javascript" src="jokes.js"></script>
     <script type="text/javascript" src="search.js"></script>
     <script type="text/javascript" src="levenstein.js"></script>
+    <script type="text/javascript" src="dep.js"></script>
+    <script type="text/javascript" src="style.css"></script>
+    <script type="text/javascript" src="TreeMenu.js"></script>
 
-    <style>
-        table{
-            width: 100%;
-        }
-
-        td {
-            width:50%;
-            overflow: hidden;
-            vertical-align: top;
-            border: 1px solid black;
-        }
-
-
-        table.center {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .example-fullblock {
-            background-color: #FFFFFF;
-            text-color: #000000;
-        }
-
-
-        .example-block {
-            background-color: #FFFFFF;
-            text-color: #000000;
-        }
-
-        .example-select {
-            background-color: #DDFFFF;
-            text-color: #000000;
-        }
-
-        .example-details {
-            background-color: #FFDDFF;
-            text-color: #000000;
-        }
-
-        .citation-source {
-            background-color: #FFFFBB;
-            text-color: #000000;
-        }
-
-        .coolthing {
-            background-color: #33FFFF;
-            text-color: #000000;
-        }
-
-    </style>
-
+    <link rel="stylesheet"
+          type="text/css"
+          href="style.css"/>
 
 
     <meta charset="UTF-8">
@@ -65,280 +19,176 @@
 <body>
 
 
+<div class="menu" id="menudiv" hidden="true">
 
-<textarea type="text" id="text" cols="100" rows="10" value=""></textarea>
-<br>
-<input type="button" onclick="f()" value="Linkify">
-<input type="button" onclick="search()" value="Search">
-<input type="button" onclick="dojoke()" value="Random joke">
+</div>
 
-<p id ="p"></p>
+<header>
 
+    <table>
+        <tr>
 
-<p id="content"> </p>
-
-
-
-
-
-<script >
-    let dict = null
-	
-	
-    let history = []
-    let poses = []
-    let nietpushen = false
-
-    function letter(chh){
-        if(chh >= 'a' && chh <= 'z'){
-            return true
-        }
-    }
-
-    function dojoke(){
-        var p = document.getElementById("p")
-        p.innerHTML = handleText(randomjoke());
-    }
-
-    function search(){
-        var inputVal = document.getElementById("text").value;
-
-        isrus = false
-        for(let i = 0; i<inputVal.length; i++){
-            if(inputVal[i] != ' ') {
-                if (ru(inputVal[i])) {
-                    isrus = true
-                    break
-                }
-            }
-        }
-
-        if (isrus){
-            dosearchsim()
-        }
-        else{
-            dosearchmean()
-        }
-    }
-
-    function handleback(){
-        if(history.length <= 1){
-
-        }
-        else{
-            history.pop()
-
-            nietpushen = true
-            hndwrd(history[history.length - 1])
-            document.documentElement.scrollTop = poses[history.length - 1]
-        }
-
-        if(poses <= 1){
-
-        }
-        else{
-            document.documentElement.scrollTop = poses[poses.length - 1]
-            console.log("active", poses)
-            poses.pop()
-        }
-
-    }
-
-    document.onkeydown = checkKey;
-
-    function checkKey(e) {
-        e = e || window.event;
-
-        if (e.keyCode == '38') {
-            // up arrow
-        }
-        else if (e.keyCode == '40') {
-            // down arrow
-        }
-        else if (e.keyCode == '37') {
-            handleback()
-        }
-        else if (e.keyCode == '39') {
-            // right arrow
-        }
-    }
-
-    function hndwrd(wrd){
-        //console.log(document.documentElement.scrollTop)
-
-        if(!nietpushen) {
-            history.push(wrd)
-
-            if(history.length>1) {
-                poses.push(document.documentElement.scrollTop)
-            }
-        }
-        /*
-        var inputVal = document.getElementById("text").value;
-        var p = document.getElementById("p")
-        p.innerHTML = handleText(inputVal);
-        */
-
-        cont = readTextFile2("articles//"+wrd+".html")
-        var content1 = document.getElementById("content")
-        content1.innerHTML = cont;
-
-        //window.open(wrd+".html", '_blank');
-
-        nietpushen = false
-
-        console.log(history, poses)
-    }
-
-    function readTextFile2(file)
-    {
-        res = ""
-        var rawFile = new XMLHttpRequest();
-        rawFile.open("GET", file, false);
-        rawFile.onreadystatechange = function ()
-        {
-            if(rawFile.readyState === 4)
-            {
-                if(rawFile.status === 200 || rawFile.status == 0)
-                {
-                    var allText = rawFile.responseText;
-
-                    let lines = allText.split(/\r?\n/);
-                    //console.log(lines);
-
-                    for (let i = 0; i < lines.length; i++) {
-                        let line = lines[i].split(";");
-                        res+=line
-                    }
-                }
-            }
-        }
-        rawFile.send(null);
-        return res
-    }
-
-    function readTextFile(file)
-    {
-        dict = {}
-        var rawFile = new XMLHttpRequest();
-        rawFile.open("GET", file, false);
-        rawFile.onreadystatechange = function ()
-        {
-            if(rawFile.readyState === 4)
-            {
-                if(rawFile.status === 200 || rawFile.status == 0)
-                {
-                    var allText = rawFile.responseText;
-
-                    let lines = allText.split(/\r?\n/);
-                    //console.log(lines);
-
-                    for (let i = 0; i < lines.length; i++) {
-                        let line = lines[i].split(";");
-                        if (line.length == 3) {
-                            dict[line[0]] = [line[1], line[2]]
-                        }
-                    }
-                }
-            }
-        }
-        rawFile.send(null);
-    }
-
-    //alert("smth")
-    readTextFile("dictionary_simple.txt")
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const input = urlParams.get('input')
-
-    if(input != undefined) {
-        document.getElementById("text").value = input
-        f();
-    }
-
-    function ru(a){
-
-        if((a>='а' && a<='я') || (a>='А' && a<='Я') ){
-            return true;
-        }
-        if(a == 'ё' || a == 'Ё'){
-            return true
-        }
-        return false
-    }
-
-    function rus(a){
-        if((a>='a' && a<='z') || (a>='A' && a<='Z') ){
-            return true;
-        }
-        if((a>='а' && a<='я') || (a>='А' && a<='Я') ){
-            return true;
-        }
-        if(a == 'ё' || a == 'Ё'){
-            return true
-        }
-        return false
-    }
-
-    function upperfy(w, u){
-        if(u){
-            return w[0].toUpperCase()+w.substr(1, w.length - 1)
-        }
-        else{
-            return w
-        }
-    }
-
-    function handleText(text){
-        if(dict == undefined){
-            readTextFile("dictionary_simple.txt")
-        }
-
-        res = ""
-        words = []
-        last = ""
-        for(let i = 0; i<text.length; i++){
-
-            if (rus(text[i])) {
-                last += text[i]
-            } else {
-                words.push(last)
-                if(text[i] == "\n" || text[i] == "\r"){
-                    words.push("<br>")
-                }
-                else {
-                    words.push(text[i])
-                }
-                last = ""
-            }
-
-        }
-        words.push(last);
+            <td width="70%">
+                <a href="#" onclick="f()">
+                    <img src="images/scroll.svg" alt="Explore text" title="Linkify"
+                         style="width:84px;height:84px;">
+                </a>
 
 
-        for(let i = 0; i<words.length; i++){
-            if(words[i].length>0) {
-                let isUpper = words[i][0].toUpperCase() == words[i][0]
-                let w = words[i].toLowerCase()
+                <a href="#" onclick="dojoke()">
+                    <img src="images/book.svg" alt="Random joke" title="Read texts"
+                         style="width:84px;height:84px;">
+                </a>
+            </td>
 
-                if (dict[w] == undefined) {
-                    res += upperfy(words[i], isUpper)
-                } else {
-                    res += "<a href=#  onclick=hndwrd(\'"+dict[w][1]+"\');>" + upperfy(dict[w][0], isUpper) + "</a>"
-                }
-                res += ""
-            }
-        }
-        return res
-    }
 
-    function f(){
-        var inputVal = document.getElementById("text").value;
-        var p = document.getElementById("p")
-        p.innerHTML = handleText(inputVal);
-    }
+            <td width="30%">
+
+                <p>Learn languages with Unilang </p>
+
+                <a href="https://einhornus.github.io/unilang_en/linkify.html">
+                    <img src="images/flags/gb.svg" alt="English" title="English"
+                         style="width:42px;height:42px;">
+                </a>
+
+                <a href="https://einhornus.github.io/unilang_sp/linkify.html">
+                    <img src="images/flags/es.svg" alt="Spanish" title="Spanish"
+                         style="width:42px;height:42px;">
+                </a>
+
+
+                <a href="https://einhornus.github.io/unilang_de/linkify.html">
+                    <img src="images/flags/de.svg" alt="German" title="German"
+                         style="width:42px;height:42px;">
+                </a>
+
+                <a href="https://einhornus.github.io/unilang_fr/linkify.html">
+                    <img src="images/flags/fr.svg" alt="French" title="French"
+                         style="width:42px;height:42px;">
+                </a>
+
+                <a href="https://einhornus.github.io/unilang/linkify.html">
+                    <img src="images/flags/ru.svg" alt="Russian" title="Russian"
+                         style="background-color:lawngreen; width:42px;height:42px;">
+                </a>
+
+                <a href="https://einhornus.github.io/unilang_pt/linkify.html">
+                    <img src="images/flags/pt.svg" alt="Portuguese" title="Portuguese"
+                         style="width:42px;height:42px;">
+                </a>
+
+                <a href="https://einhornus.github.io/unilang_it/linkify.html">
+                    <img src="images/flags/it.svg" alt="Italian" title="Italian"
+                         style="width:42px;height:42px;">
+                </a>
+
+                <a href="https://einhornus.github.io/unilang_nl/linkify.html">
+                    <img src="images/flags/nl.svg" alt="Dutch" title="Dutch"
+                         style="width:42px;height:42px;">
+                </a>
+
+                <a href="https://einhornus.github.io/unilang_sv/linkify.html">
+                    <img src="images/flags/sv.svg" alt="Swedish" title="Swedish"
+                         style="width:42px;height:42px;">
+                </a>
+            </td>
+    </table>
+</header>
+
+<header>
+    <table>
+        <td width="40%">
+            <textarea type="text" id="text" cols=55 rows="10" placeholder="Enter some Russian text here"></textarea>
+        </td>
+
+        <td width="60%" id="pic" style="font-size: 14px">
+            <p>
+                <h4>Welcome to Unilang!</h4>
+                Just put some Russian text into the box on the left and click the parchment scroll icon above. It will turn words from the text into clickable links, so you can read the text while looking up articles on words you're unfamiliar with.<br>
+
+                <br>
+                You can also find some texts to read clicking on the book icon (right next to the parchment scroll).
+                <br>
+                <br>
+                Right under the text box there is the search box.
+                If you put an English word here and click the left icon, it will find the possible ways to translate this word to Russian.
+                If you put a Russian word (possibly misspelled) and click the right icon, it will find the most similar looking Russian words in the dictionary.
+
+            </p>
+        </td>
+    </table>
+</header>
+
+<section>
+    <nav>
+        <!---
+        <div id="bodydesc2"
+             style="margin-left:auto; margin-right:auto; margin-top:40px;">
+
+            <textarea type="text" id="text" cols=65 rows="10" placeholder="Enter a Dutch text here"></textarea>
+
+        </div>
+        --->
+
+        <table class="pane">
+            <tr>
+
+                <td>
+                    <a href="#" onclick="dosearch(1)">
+                        <img src="images//flags//gb.svg" alt="Search meaning" title="Search for meaning"
+                             style="width:15px;height:15px;">
+                    </a>
+
+                    <input cols="20" id="searchfield">
+
+                    <a href="#" onclick="dosearch(2)">
+                        <img src="images//flags//ru.svg" alt="Search meaning" title="Search for similar"
+                             style="width:15px;height:15px;">
+                    </a>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <div class="slidecontainer" hidden="true" id = "sld">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange" width="">
+                        <p id="demo" style="width: 200px"></p>
+
+                        <a href="#" onclick="doback()">
+                            <img src="images//prev.svg" alt="Backward" title="Previous page"
+                                 style="width:20px;height:20px;">
+                        </a>
+
+                        <a href="#" onclick="dofwd()">
+                            <img src="images//next.svg" alt="Forward" title="Next page"
+                                 style="width:20px;height:20px;">
+                        </a>
+                    </div>
+
+
+                    </p>
+                </td>
+
+            </tr>
+        </table>
+
+
+        <div id="bodydesc">
+            <p id="p" style="width: 90%"></p>
+        </div>
+
+    </nav>
+    <article>
+        <p id="content"></p>
+    </article>
+</section>
+
+<script>
+    //document.getElementById("searchfield").value = "make"
+    //dosearch(2)
+    console.log(handleText("определенный"))
+    make_menu()
+
 </script>
-
-
 </body>
 </html>
