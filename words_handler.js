@@ -4,6 +4,8 @@ let history = []
 let poses = []
 let nietpushen = false
 
+let pics = null
+
 function handleback() {
     if (history.length <= 1) {
 
@@ -287,7 +289,6 @@ function putText(text){
      */
 }
 
-pics = null
 function getPic(wrd){
     if(pics == null) {
         all = readTextFile2("pics.txt")
