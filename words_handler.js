@@ -222,10 +222,11 @@ function handleText(text) {
                 else{
                     let imageUppercase = upperfy(defImage, isUpper);
 
-                    console.log("Images", images)
+                    //console.log("stress", stress)
 
                     if(stress != null){
                         imageUppercase = stress;
+                        uppercase = stress;
                     }
 
                     if(images.length > 1){
@@ -303,7 +304,6 @@ function getPic(wrd){
         }
     }
 
-    console.log(pics)
     if(wrd in pics){
         res = "<img src=\"images\\"+pics[wrd]+"\" width=\"150\" height=\"150\">"
         return res
