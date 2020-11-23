@@ -13,6 +13,10 @@
           href="style.css"/>
 
 
+    <link rel="icon"
+          type="image/svg"
+          href="images/flags/ru.svg">
+
     <meta charset="UTF-8">
     <title>Unilang Russian</title>
 </head>
@@ -134,10 +138,19 @@
             <tr>
 
                 <td>
+
+
                     <a href="#" onclick="dosearch(1)">
+
                         <img src="images//flags//gb.svg" alt="Search meaning" title="Search for meaning"
                              style="width:15px;height:15px;">
                     </a>
+
+                    <a href="#" onclick="dosearch(3)">
+                        <img src="images//flags//gb.svg" alt="Search meaning" title="Search for meaning" id="nlsearch" hidden="true"
+                             style="width:15px;height:15px;">
+                    </a>
+
 
                     <input cols="20" id="searchfield">
 
@@ -186,8 +199,6 @@
 <script>
     //document.getElementById("searchfield").value = "make"
     //dosearch(2)
-    handleText("1. – Твоя́ жена́ весь день на ку́хне. Она́ лю́бит гото́вить?\n" +
-        "– Что ты! Нет, коне́чно! На ку́хне наш телефо́н.\n")
     make_menu()
 
 </script>
