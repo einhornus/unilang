@@ -53,7 +53,17 @@ table.center td {
     width: 50%;
     overflow: hidden;
     vertical-align: top;
-    border: 1px solid black;
+    border: 1px dotted black;
+}
+
+table.searchtable td {
+    overflow: hidden;
+    horiz-align: center;
+    border: 1px dotted black;
+}
+
+table.searchtable {
+    horiz-align: center;
 }
 
 table.upper td {
@@ -80,7 +90,7 @@ section:after {
 
 nav {
     float: left;
-    width: 30%;
+    width: 35%;
     background: #c8ccd3;
     padding: 0px;
 }
@@ -89,7 +99,7 @@ nav {
 article {
     float: right;
     padding: 0px;
-    width: 70%;
+    width: 65%;
     background-color: #c8ccd3;
 }
 

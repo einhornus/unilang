@@ -115,27 +115,9 @@ function make_tree(list, root){
     return res;
 }
 
-function get_native_lang(){
-    if (navigator.languages != undefined)
-        return navigator.languages[0];
-    else
-        return navigator.language;
-}
-
-function show_native_language(){
-    nl = get_native_lang()
-    if(nl.indexOf("en") == -1){
-        nls = document.getElementById("nlsearch")
-        if(nl == "nl"){
-            bls.src = "images//flags//nl.svg";
-        }
-    }
-    alert(nl)
-}
 
 function make_menu(){
     parsejokes()
-    //show_native_language()
 
     menu = document.getElementById("menudiv")
     sc = document.getElementById("sld")

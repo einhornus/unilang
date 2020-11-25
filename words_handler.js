@@ -313,6 +313,18 @@ function getPic(wrd){
     }
 }
 
+function langtable(pc, word){
+    lngs = ["ru"]
+    adds = get_additional_langs()
+    for(let i = 0; i<adds.length; i++){
+        lngs.push(adds[i])
+    }
+    picstuff = searchmean(word, lngs, "ru", true)
+    if(!(picstuff == "No results found")) {
+        pc.innerHTML = handleText(picstuff);
+    }
+}
+
 function hndwrd(wrd) {
     if(!(wrd == undefined)) {
         if (!nietpushen) {
@@ -324,7 +336,8 @@ function hndwrd(wrd) {
         }
 
         var content1 = document.getElementById("content")
-        var pc = document.getElementById("pic")
+        var pc = document.getElementById("guide")
+        pc.innerHTML = ""
 
         dw = dict[wrd]
 
@@ -336,7 +349,10 @@ function hndwrd(wrd) {
             } else {
                 cont = readTextFile2("articles//" + dw[0][1] + ".html")
             }
-            pc.innerHTML = getPic(wrd)
+            //pc.innerHTML = getPic(wrd)
+
+            langtable(pc, dw[0][1])
+
             content1.innerHTML = cont;
         } else {
             let stop = false
@@ -357,12 +373,15 @@ function hndwrd(wrd) {
                 content1.innerHTML = cont;
             }
             else{
+
+                langtable(pc, dw[st][1])
+
                 if (dw[st][1][0] == dw[st][1][0].toUpperCase()) {
                     cont = readTextFile2("articles//_" + dw[st][1] + ".html")
                 } else {
                     cont = readTextFile2("articles//" + dw[st][1] + ".html")
                 }
-                pc.innerHTML = getPic(wrd)
+                //pc.innerHTML = getPic(wrd)
                 content1.innerHTML = cont;
             }
 

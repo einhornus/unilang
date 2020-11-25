@@ -51,7 +51,7 @@
                 <p>Learn languages with Unilang </p>
 
                 <a href="https://einhornus.github.io/unilang_en/linkify.html">
-                    <img src="images/flags/gb.svg" alt="English" title="English"
+                    <img src="images/flags/en.svg" alt="English" title="English"
                          style="width:42px;height:42px;">
                 </a>
 
@@ -101,11 +101,14 @@
 
 <header>
     <table>
-        <td width="40%">
-            <textarea type="text" id="text" cols=55 rows="10" placeholder="Enter some Russian text here"></textarea>
+        <td width="35%">
+            <textarea type="text" id="text" cols=60 rows="14" placeholder="Enter some Russian text here"></textarea>
         </td>
 
-        <td width="60%" id="pic" style="font-size: 14px">
+        <td width="0%" id="pics" id="pics" >
+        </td>
+
+        <td width="65%" id="guide" >
             <p>
                 <h4>Welcome to Unilang!</h4>
                 Just put some Russian text into the box on the left and click the parchment scroll icon above. It will turn words from the text into clickable links, so you can read the text while looking up articles on words you're unfamiliar with.<br>
@@ -115,11 +118,13 @@
                 <br>
                 <br>
                 Right under the text box there is the search box.
-                If you put an English word here and click the left icon, it will find the possible ways to translate this word to Russian.
+                If you put a word here (that exists in English or in any of the languages you set in browser settings) and click the left icon, it will find the possible ways to translate this word to Russian.
                 If you put a Russian word (possibly misspelled) and click the right icon, it will find the most similar looking Russian words in the dictionary.
 
             </p>
         </td>
+
+
     </table>
 </header>
 
@@ -142,20 +147,15 @@
 
                     <a href="#" onclick="dosearch(1)">
 
-                        <img src="images//flags//gb.svg" alt="Search meaning" title="Search for meaning"
-                             style="width:15px;height:15px;">
-                    </a>
-
-                    <a href="#" onclick="dosearch(3)">
-                        <img src="images//flags//gb.svg" alt="Search meaning" title="Search for meaning" id="nlsearch" hidden="true"
+                        <img src="images//loupe.svg" title="Search for meaning"
                              style="width:15px;height:15px;">
                     </a>
 
 
-                    <input cols="20" id="searchfield">
+                    <input cols="20" id="searchfield" value="">
 
                     <a href="#" onclick="dosearch(2)">
-                        <img src="images//flags//ru.svg" alt="Search meaning" title="Search for similar"
+                        <img src="images//flags//ru.svg" title="Search for similar"
                              style="width:15px;height:15px;">
                     </a>
 
@@ -197,8 +197,12 @@
 </section>
 
 <script>
-    //document.getElementById("searchfield").value = "make"
-    //dosearch(2)
+    //document.getElementById("searchfield").value = "на"
+    //dosearch(1)
+
+    //hndwrd("тормоз")
+
+
     make_menu()
 
 </script>
