@@ -324,11 +324,11 @@ function searchmean(word, langs, target, simple) {
     }
 
     if(!detailed || !simple) {
-        full += "<td style='text-align: center width:" + widths[langs_with_en.length] + "%''>" + get_flag(target) + "</td>"
+        full += "<td style='text-align: center; width:" + widths[langs_with_en.length] + "%''>" + get_flag(target) + "</td>"
         full += "</tr>"
     }
 
-    short += "<td style='text-align: center width:"+widths[langs_with_en.length]+"%''>" + get_flag(target) + "</td>"
+    short += "<td style='text-align: center; width:"+widths[langs_with_en.length]+"%''>" + get_flag(target) + "</td>"
     short += "</tr>"
 
 
