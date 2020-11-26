@@ -410,6 +410,10 @@ function read_dictionary() {
                         //line[0] = line[0].replaceAll("́ё", 'ё')
                         //line[1] = line[1].replaceAll("́ё", 'ё')
 
+                        if(line[0] == "место"){
+                            console.log();
+                        }
+
                         if(dict[line[0]] == undefined){
                             dict[line[0]] = []
                         }

@@ -161,8 +161,6 @@ function get_additional_langs() {
         return []
 }
 
-searchmean(word, get_additional_langs(), "ru", false)
-
 function make_table(word, langs_from, lang_to) {
     word = word.replace("ё", "е")
     word = word.replace("ё", "е")
