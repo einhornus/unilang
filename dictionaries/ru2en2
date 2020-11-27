@@ -1,8 +1,3 @@
-вода|water; clear liquid H₂O|water|Noun|363
-воды|water; spa water|water|Noun|363
-вода|water; one of the basic elements|water|Noun|363
-воды|water; body of water, or specific part of it|water|Noun|363
-урина, моча|water; urine|water|Noun|363
 язык, речь|language; body of words used as a form of communication|language|Noun|1283
 язык, речь|language; the ability to communicate using words|language|Noun|1283
 язык|language; nonverbal communication|language|Noun|1283
@@ -406,6 +401,11 @@
 время|time; person's experiences or biography|time|Noun|76
 голос, глас|voice; sound uttered by the mouth|voice|Noun|685
 залог|voice; grammar: particular mode of inflecting or conjugating verbs|voice|Noun|685
+вода|water; clear liquid H₂O|water|Noun|363
+воды|water; spa water|water|Noun|363
+вода|water; one of the basic elements|water|Noun|363
+воды|water; body of water, or specific part of it|water|Noun|363
+урина, моча|water; urine|water|Noun|363
 белый|white; bright and colourless|white|Adjective|519
 белый|white; of or relating to Caucasians|white|Adjective|519
 ветер|wind; movement of air|wind|Noun|943
@@ -10284,6 +10284,7 @@
 обшивка|boarding; structure made of boards|boarding|Noun|4265
 щенок, цуцик|puppy; young dog|puppy|Noun|4267
 самолёт, аэроплан|airplane; powered aircraft|airplane|Noun|4268
+участок, где водятся кролики|warren; the system of burrows where rabbits live|warren|Noun|4270
 кроличий садок|warren; an enclosed piece of land set aside for breeding game, especially rabbits.|warren|Noun|4270
 «муравейник»|warren; labyrinthine place|warren|Noun|4270
 общий, совместный|shared; used by multiple agents|shared|Adjective|4271
@@ -22482,6 +22483,7 @@
 сестринство|sorority; group of women or girls associated for a common purpose|sorority|Noun|16886
 орда|horde; wandering troop or gang|horde|Noun|16889
 орда, полчище|horde; a large number of people|horde|Noun|16889
+кофе (чай, напиток) без кофеина|decaf; a decaffeinated drink|decaf|Noun|16900
 прокол|puncture; hole, cut or tear|puncture|Noun|16902
 прокалывать, проколоть|puncture; to pierce|puncture|Verb|16902
 полумесяц|crescent; figure of the moon|crescent|Noun|16904
@@ -22740,7 +22742,7 @@
 зверский, адский|diabolical; Extremely wicked or cruel|diabolical|Adjective|17276
 пресмыкающееся, рептилия, гад|reptile; a cold-blooded vertebrate|reptile|Noun|17277
 булькать, кипеть на медленном огне|simmer; (intransitive) to cook or undergo heating slowly|simmer|Verb|17280
-кипятить на медленном огне|simmer; (transitive) to cause to cook or undergo heating slowly|simmer|Verb|17280
+варить, не доводя до кипения, кипятить на медленном огне|simmer; (transitive) to cause to cook or undergo heating slowly|simmer|Verb|17280
 бонго|bongo; mammal|bongo|Noun|17284
 бонго|bongo; drum|bongo|Noun|17284
 гель|gel; suspension of solid in liquid|gel|Noun|17286
@@ -32894,6 +32896,7 @@
 ассемблер|assembler; program that converts assembly language to machine code|assembler|Noun|53984
 магнитосфера|magnetosphere; region around a planet|magnetosphere|Noun|54014
 замешанный|complicit; associated with or participating in an activity, especially one of a questionable nature|complicit|Adjective|54050
+обязательство, данное суду|recognizance; a promise to the court|recognizance|Noun|54056
 символ, эмблема|recognizance; a token, a symbol|recognizance|Noun|54056
 граничить, примыкать, прилегать, упираться|abut; to border on|abut|Verb|54069
 давний, незапамятный, древний, старый|immemorial; that is beyond memory; ancient|immemorial|Adjective|54078

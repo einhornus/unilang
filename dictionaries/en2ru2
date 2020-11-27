@@ -1,8 +1,3 @@
-water|water; clear liquid H₂O|вода|Noun|363
-water|water; spa water|воды|Noun|363
-water|water; one of the basic elements|вода|Noun|363
-water|water; body of water, or specific part of it|воды|Noun|363
-water|water; urine|урина, моча|Noun|363
 language|language; body of words used as a form of communication|язык, речь|Noun|1283
 language|language; the ability to communicate using words|язык, речь|Noun|1283
 language|language; nonverbal communication|язык|Noun|1283
@@ -406,6 +401,11 @@ time|time; slang: serving of a prison sentence|срок|Noun|76
 time|time; person's experiences or biography|время|Noun|76
 voice|voice; sound uttered by the mouth|голос, глас|Noun|685
 voice|voice; grammar: particular mode of inflecting or conjugating verbs|залог|Noun|685
+water|water; clear liquid H₂O|вода|Noun|363
+water|water; spa water|воды|Noun|363
+water|water; one of the basic elements|вода|Noun|363
+water|water; body of water, or specific part of it|воды|Noun|363
+water|water; urine|урина, моча|Noun|363
 white|white; bright and colourless|белый|Adjective|519
 white|white; of or relating to Caucasians|белый|Adjective|519
 wind|wind; movement of air|ветер|Noun|943
@@ -10284,6 +10284,7 @@ boarding|boarding; act of attacking an enemy ship|абордаж|Noun|4265
 boarding|boarding; structure made of boards|обшивка|Noun|4265
 puppy|puppy; young dog|щенок, цуцик|Noun|4267
 airplane|airplane; powered aircraft|самолёт, аэроплан|Noun|4268
+warren|warren; the system of burrows where rabbits live|участок, где водятся кролики|Noun|4270
 warren|warren; an enclosed piece of land set aside for breeding game, especially rabbits.|кроличий садок|Noun|4270
 warren|warren; labyrinthine place|«муравейник»|Noun|4270
 shared|shared; used by multiple agents|общий, совместный|Adjective|4271
@@ -22482,6 +22483,7 @@ wholesome|wholesome; promoting virtue or being virtuous|добродетельн
 sorority|sorority; group of women or girls associated for a common purpose|сестринство|Noun|16886
 horde|horde; wandering troop or gang|орда|Noun|16889
 horde|horde; a large number of people|орда, полчище|Noun|16889
+decaf|decaf; a decaffeinated drink|кофе (чай, напиток) без кофеина|Noun|16900
 puncture|puncture; hole, cut or tear|прокол|Noun|16902
 puncture|puncture; to pierce|прокалывать, проколоть|Verb|16902
 crescent|crescent; figure of the moon|полумесяц|Noun|16904
@@ -22740,7 +22742,7 @@ diabolical|diabolical; Of, or concerning the devil; satanic|дьявольски
 diabolical|diabolical; Extremely wicked or cruel|зверский, адский|Adjective|17276
 reptile|reptile; a cold-blooded vertebrate|пресмыкающееся, рептилия, гад|Noun|17277
 simmer|simmer; (intransitive) to cook or undergo heating slowly|булькать, кипеть на медленном огне|Verb|17280
-simmer|simmer; (transitive) to cause to cook or undergo heating slowly|кипятить на медленном огне|Verb|17280
+simmer|simmer; (transitive) to cause to cook or undergo heating slowly|варить, не доводя до кипения, кипятить на медленном огне|Verb|17280
 bongo|bongo; mammal|бонго|Noun|17284
 bongo|bongo; drum|бонго|Noun|17284
 gel|gel; suspension of solid in liquid|гель|Noun|17286
@@ -32894,6 +32896,7 @@ knockoff|knockoff; imitation of something|подделка|Noun|53881
 assembler|assembler; program that converts assembly language to machine code|ассемблер|Noun|53984
 magnetosphere|magnetosphere; region around a planet|магнитосфера|Noun|54014
 complicit|complicit; associated with or participating in an activity, especially one of a questionable nature|замешанный|Adjective|54050
+recognizance|recognizance; a promise to the court|обязательство, данное суду|Noun|54056
 recognizance|recognizance; a token, a symbol|символ, эмблема|Noun|54056
 abut|abut; to border on|граничить, примыкать, прилегать, упираться|Verb|54069
 immemorial|immemorial; that is beyond memory; ancient|давний, незапамятный, древний, старый|Adjective|54078
