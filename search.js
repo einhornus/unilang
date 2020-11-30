@@ -310,7 +310,7 @@ function make_table(word, simple) {
             }
 
             if (i == 0) {
-                def = def.replace(p2[0]+";", "<b>"+p2[0]+"</b>, "+pos+"&#8212 <br>")
+                def = def.replace(p2[0]+";", "<b>"+p2[0]+"</b>, "+pos+" &#8212 <br>")
 
                 table[i][j] = def
             } else {
