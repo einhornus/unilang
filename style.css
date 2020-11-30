@@ -7,6 +7,10 @@ body {
     background-color: #c8ccd1;
 }
 
+h1{
+    font-size: 22px;
+}
+
 p, textarea {
     font-family: Verdana;
     font-size: 15px;
@@ -90,7 +94,7 @@ section:after {
 
 nav {
     float: left;
-    width: 35%;
+    width: 30%;
     background: #c8ccd3;
     padding: 0px;
 }
@@ -98,7 +102,7 @@ nav {
 article {
     float: right;
     padding: 0px;
-    width: 65%;
+    width: 70%;
     background-color: #c8ccd3;
 }
 
@@ -107,13 +111,13 @@ article {
 .menu {
     position: absolute;
     top: 0px;
-    left: 513px;
+    left: 250px;
     z-index: 10;
 }
 
 
 .menu	{
-    width:300px;
+    width:150px;
     height:175px;
     padding:10px 5px 10px 5px;
     margin:12px 12px 12px 50px;

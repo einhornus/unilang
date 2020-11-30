@@ -1,5 +1,10 @@
 let vocabs = null;
+let std_langs = ["en", "es", "de", "fr", "ru", "pt", "it", "nl", "sv"]
+let existing_langs = [1, 0, 0, 0, 1, 0, 0, 0, 0]
+let main_lang = 4
+let reverse_links = {}
 
+get_langs()
 
 function dosearch(index) {
     word = document.getElementById("searchfield").value
@@ -38,8 +43,9 @@ function fileExists(url) {
     }
 }
 
-function readTextFile3(file) {
-    vocab = []
+function readTextFile3() {
+    let file = "dictionaries//all"
+    vocabs = []
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function () {
@@ -50,25 +56,69 @@ function readTextFile3(file) {
                 let lines = allText.split(/\r?\n/);
                 for (let i = 0; i < lines.length; i++) {
                     if (lines[i] != undefined) {
+                        lines[i] = lines[i].replaceAll("́", '')
                         let line = lines[i].split("|");
-                        if (line.length == 5) {
-                            index = parseInt(line[4])
-                            pos = line[3]
-                            words1 = line[0].split(', ')
-                            words2 = line[2].split(', ')
 
-                            def = line[1]
 
-                            vocab.push([words1, def, words2, pos, index])
+                        if (line.length == 13) {
+                            index = parseInt(line[3])
+                            pos = line[2]
+                            def = line[0] + "; " + line[1]
+
+                            let exists = false
+                            let all_words = []
+                            for (let q = 0; q < std_langs.length; q++) {
+                                all_words[q] = []
+                            }
+
+
+                            for (let q = 0; q < std_langs.length; q++) {
+                                if (existing_langs[q] == 1) {
+                                    if (line[4 + q].length > 0) {
+                                        words = line[4 + q].split(', ')
+                                        all_words[q] = words
+                                        exists = true
+                                    }
+                                }
+                            }
+
+                            if (exists) {
+                                if (all_words[main_lang].length == 0) {
+                                    exists = false
+                                }
+                            }
+
+                            if (exists) {
+                                vocabs.push([[def, pos, index], all_words])
+                            }
                         }
                     }
                 }
+
+
+                for (let i = 0; i < vocabs.length; i++) {
+                    good = false
+                    set = vocabs[i][1][4]
+
+                    for(let j = 0; j<set.length; j++){
+                        w = set[j]
+
+                        if (reverse_links[w] == undefined) {
+                            reverse_links[w] = []
+                        }
+                        reverse_links[w].push(i)
+                    }
+                }
+
+
+                console.log(vocabs)
             }
         }
+
     }
 
+
     rawFile.send(null);
-    return vocab
 }
 
 
@@ -113,6 +163,30 @@ function searchlevenstein(word, maxcnt) {
     return res
 }
 
+function get_english_transes(wrd){
+    res = []
+
+    let ri = reverse_links[wrd]
+
+    if(ri != undefined){
+        for(let i = 0; i<ri.length; i++){
+            www = vocabs[ri[i]][1][0][0]
+
+            let exi = false
+            for(let j = 0; j<res.length; j++){
+                if(res[j] == www){
+                    exi = true
+                    break
+                }
+            }
+
+            if(!exi){
+                res.push(www)
+            }
+        }
+    }
+    return res;
+}
 
 function dosearchsim(word) {
     if (word.length > 0) {
@@ -121,7 +195,14 @@ function dosearchsim(word) {
 
         newval = "<ul>"
         for (let i = 0; i < leven.length; i++) {
-            newval += "<li>" + leven[i][1] + "</li>"
+            tr = get_english_transes(leven[i][1])
+            if(tr.length > 0) {
+                newval += "<li><b>" + leven[i][1] + "</b> &#8212 " + get_english_transes(leven[i][1]).join(", ") + "</li>"
+            }
+            else{
+                newval += "<li><b>" + leven[i][1] + "</b>" + "</li>"
+
+            }
         }
         newval += "</ul>"
 
@@ -133,175 +214,135 @@ function dosearchsim(word) {
     return newval
 }
 
-function get_additional_langs() {
-    let protolangs = [
-        "nl",
-        "fr",
-        "ru",
-        "es",
-        "it",
-        "de",
-        "pt",
-        "sv"
-    ]
+function get_langs() {
+    existing_langs[4] = 1;
 
     if (navigator.languages != undefined) {
-        let res = ["en"];
-        for (let j = 0; j < protolangs.length; j++) {
+        for (let j = 0; j < std_langs.length; j++) {
             for (let i = 0; i < navigator.languages.length; i++) {
                 let lng = navigator.languages[i];
-                if (lng.indexOf(protolangs[j]) != -1) {
-                    res.push(protolangs[j]);
+                if (lng.indexOf(std_langs[j]) != -1) {
+                    existing_langs[j] = 1;
                     break
                 }
             }
         }
-        return res
-    } else
-        return []
+    }
+
+    console.log()
 }
 
-function make_table(word, langs_from, lang_to) {
-    word = word.replace("ё", "е")
+function make_table(word, simple) {
     word = word.replace("ё", "е")
     word = word.toLowerCase()
 
-
-
-    if(word[0] == "_"){
-        word = word[1].toUpperCase()+word.substr(2)
+    if (word[0] == "_") {
+        word = word[1].toUpperCase() + word.substr(2)
     }
-
-    let english_defs = new Set()
-    let national_defs = new Set()
-
-    all_the_langs = []
-    for (let q = 0; q < langs_from.length; q++) {
-        all_the_langs.push(langs_from[q])
-    }
-    all_the_langs.push(lang_to)
 
     if (vocabs == null) {
-        vocabs = []
-        for (let q = 0; q < all_the_langs.length; q++) {
-            let current_lang = all_the_langs[q]
-
-            vocab = readTextFile3("dictionaries//" + current_lang + "2" + lang_to)
-            vocabs.push(vocab)
-        }
+        readTextFile3();
     }
 
-    for (let q = 0; q < all_the_langs.length; q++) {
-        vocab = vocabs[q]
-
-        for (let i = 0; i < vocab.length - 1; i++) {
-            let w = vocab[i][0]
-
-            let def = vocab[i][1]
-            let tran = vocab[i][2]
-
-
-            if((tran[0][0] >= 'а' && tran[0][0] <= 'я') || (tran[0][0] >= 'А' && tran[0][0] <= 'Я')) {
-                for (let k = 0; k < tran.length; k++) {
-                    tran[k] = tran[k].replace("ё", "е");
-                    tran[k] = tran[k].replaceAll("́", "")
+    let indexes = []
+    if (simple) {
+        indexes = reverse_links[word]
+        if (indexes == undefined) {
+            indexes = []
+        }
+    } else {
+        for (let i = 0; i < vocabs.length; i++) {
+            good = false
+            for (let j = 0; j < vocabs[j][1].length; j++) {
+                set = vocabs[i][1][j]
+                if (set.includes(word)) {
+                    good = true
+                    break
                 }
             }
-
-            pos = vocab[i][3]
-            index = vocab[i][4]
-
-            if (w.includes(word) || def.indexOf(word + "; ") == 0 || tran.includes(word)) {
-                english_defs.add(def);
-                //national_defs.add([q, def, w, tran, pos])
-                //lst.push([w, def, tran, current_lang])
+            if (good) {
+                indexes.push(i)
             }
         }
     }
 
+    let table_width = 0;
+    let table_height = indexes.length;
 
-    for (let q = 0; q < all_the_langs.length; q++) {
-        vocab = vocabs[q]
-
-        for (let i = 0; i < vocab.length - 1; i++) {
-            let w = vocab[i][0]
-
-            let def = vocab[i][1]
-            let tran = vocab[i][2]
-
-
-            pos = vocab[i][3]
-            index = vocab[i][4]
-
-            if(english_defs.has(def)){
-                national_defs.add([q, def, w, tran, pos])
-            }
-        }
-    }
-
-
-
-    if (english_defs.size == 0) {
+    if(table_height == 0){
         return null
     }
 
+    for (let i = 0; i < existing_langs.length; i++) {
+        if (existing_langs[i] == 1) {
+            table_width++;
+        }
+    }
 
-    let inds = new Set()
-    let v = 0
-    english_defs.forEach(function (value) {
-        inds[value] = v
-        v++;
-    })
-
-
-    let table = new Array(langs_from.length + 1);
+    let table = new Array(table_width);
     for (var i = 0; i < table.length; i++) {
-        table[i] = new Array(english_defs.size);
+        table[i] = new Array(table_height);
 
-        for (var j = 0; j < english_defs.size; j++) {
+        for (var j = 0; j < table_height; j++) {
             table[i][j] = "-";
         }
     }
 
-    national_defs.forEach(function (value) {
-        lang_index = value[0]
-        index = inds[value[1]]
-        let put = value[2].join(", ")
-
-        v = value[1]
-        v = "<b>" + v
-        v = v.replace(";", "</b>, " + value[4].toLowerCase() + " &#8212 <br>")
-        table[0][index] = v
-
-        if (lang_index != 0) {
-            table[lang_index][index] = put
+    let lang_inds = []
+    for(let i = 0; i<std_langs.length; i++){
+        if(existing_langs[i] == 1){
+            lang_inds.push(i)
         }
+    }
 
-        table[langs_from.length][index] = value[3].join(", ")
-    })
+    for (var i = 0; i < table_width; i++) {
+        for (var j = 0; j < table_height; j++) {
+            let index = indexes[j]
+            let voc = vocabs[index]
+            let p1 = voc[0]
+            let p2 = voc[1]
+
+            def = p1[0]
+            pos = p1[1].toLowerCase()
+
+            if(simple){
+                console.log()
+            }
+
+            if (i == 0) {
+                def = def.replace(p2[0]+";", "<b>"+p2[0]+"</b>, "+pos+"&#8212 <br>")
+
+                table[i][j] = def
+            } else {
+                enu = p2[lang_inds[i]]
+                table[i][j] = enu.join(", ")
+            }
+        }
+    }
 
     return table
 }
 
 
-function searchmean(word, langs, target, simple) {
+function searchmean(word, simple) {
+    table = make_table(word, simple)
+
     let langs_with_en = []
-    for (let i = 0; i < langs.length; i++) {
-        if (langs[i] != target) {
-            langs_with_en.push(langs[i])
+    for(let i = 0; i<std_langs.length; i++){
+        if(existing_langs[i] == 1){
+            langs_with_en.push(std_langs[i])
         }
     }
-    table = make_table(word, langs_with_en, target)
 
     if (table == null) {
         return "No results found";
     }
 
-    let lim = 3
+    let lim = 1000
     let detailed = table[0].length > lim
 
     let full = "<table class='searchtable'>"
-    if(!detailed || !simple) {
+    if (!detailed || !simple) {
         full += "<tr>"
     }
 
@@ -310,42 +351,33 @@ function searchmean(word, langs, target, simple) {
 
     widths = []
     widths[0] = Math.max(30, 50 - (langs_with_en.length - 1) * 10)
-    for (let i = 1; i < langs_with_en.length+1; i++) {
+    for (let i = 1; i < langs_with_en.length + 1; i++) {
         widths[i] = Math.round((100 - widths[0]) / (langs_with_en.length))
     }
 
     for (let i = 0; i < langs_with_en.length; i++) {
-        if(!detailed || !simple) {
+        if (!detailed || !simple) {
             full += "<td style='text-align: center; width:" + widths[i] + "%'>" + get_flag(langs_with_en[i]) + "</td>"
         }
-        short += "<td style='text-align: center;width:"+widths[i]+"%''>" + get_flag(langs_with_en[i]) + "</td>"
+        short += "<td style='text-align: center;width:" + widths[i] + "%''>" + get_flag(langs_with_en[i]) + "</td>"
     }
-
-    if(!detailed || !simple) {
-        full += "<td style='text-align: center; width:" + widths[langs_with_en.length] + "%''>" + get_flag(target) + "</td>"
-        full += "</tr>"
-    }
-
-    short += "<td style='text-align: center; width:"+widths[langs_with_en.length]+"%''>" + get_flag(target) + "</td>"
-    short += "</tr>"
-
 
     for (let i = 0; i < table[0].length; i++) {
-        if(i < lim){
+        if (i < lim) {
             short += "<tr>"
             for (let j = 0; j < table.length; j++) {
-                if(simple) {
-                    table[j][i] = table[j][i].replace("<br>", "");
+                if (simple) {
+                    //table[j][i] = table[j][i].replace("<br>", "");
                 }
                 short += "<td>" + table[j][i] + "</td>"
             }
             short += "</tr>"
         }
-        if(i >= lim || !detailed){
+        if (i >= lim || !detailed) {
             full += "<tr>"
             for (let j = 0; j < table.length; j++) {
-                if(simple) {
-                    table[j][i] = table[j][i].replace("<br>", "");
+                if (simple) {
+                    //table[j][i] = table[j][i].replace("<br>", "");
                 }
                 full += "<td style='width:" + widths[j] + "%'>" + table[j][i] + "</td>"
             }
@@ -356,21 +388,19 @@ function searchmean(word, langs, target, simple) {
     short += "</table>"
     full += "</table>"
 
-
     let html = ""
 
-    if(detailed && simple){
-        html+="<details>\n"
+    if (detailed && simple) {
+        html += "<details>\n"
 
-        html+="<summary>\n"
-        html+=short
-        html+="</summary>\n"
+        html += "<summary>\n"
+        html += short
+        html += "</summary>\n"
 
-        html+=full
-        html+="</details>\n"
-    }
-    else{
-        html+=full
+        html += full
+        html += "</details>\n"
+    } else {
+        html += full
     }
 
     return html
@@ -386,7 +416,7 @@ function do_ruby(text, lang) {
 
 function dosearchmean(word) {
     if (word.length > 0) {
-        res = searchmean(word, get_additional_langs(), "ru", false)
+        res = searchmean(word, false)
         return res
     }
 

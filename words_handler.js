@@ -314,15 +314,30 @@ function getPic(wrd){
 }
 
 function langtable(pc, word){
-    lngs = ["ru"]
-    adds = get_additional_langs()
-    for(let i = 0; i<adds.length; i++){
-        lngs.push(adds[i])
-    }
-    picstuff = searchmean(word, lngs, "ru", true)
+    get_langs()
+    picstuff = searchmean(word, true)
     if(!(picstuff == "No results found")) {
         pc.innerHTML = handleText(picstuff);
     }
+}
+
+function put_info(link){
+    var content1 = document.getElementById("content")
+    var prono = document.getElementById("prono_part")
+    var ety = document.getElementById("ety_part")
+
+
+    prono.innerHTML = "";
+    ety.innerHTML = "";
+
+
+    cont = readTextFile2(link)
+    
+    _parts = cont.split("|||||")
+
+    content1.innerHTML += _parts[2];
+    prono.innerHTML = _parts[0];
+    ety.innerHTML = _parts[1];
 }
 
 function hndwrd(wrd) {
@@ -335,25 +350,35 @@ function hndwrd(wrd) {
             }
         }
 
+        var prono = document.getElementById("prono_part")
+        var ety = document.getElementById("ety_part")
+        prono.innerHTML = "";
+        ety.innerHTML = "";
+
+
         var content1 = document.getElementById("content")
-        var pc = document.getElementById("guide")
-        pc.innerHTML = ""
+        //var pc = document.getElementById("guide")
+        //pc.innerHTML = ""
+
+        content1.innerHTML = "";
 
         dw = dict[wrd]
 
         console.log("DW", dw)
 
         if (dw.length == 1) {
+            langtable(content1, dw[0][1])
+
             if (dw[0][1][0] == dw[0][1][0].toUpperCase()) {
-                cont = readTextFile2("articles//_" + dw[0][1] + ".html")
+                
+                put_info("articles//_" + dw[0][1] + ".html")
             } else {
-                cont = readTextFile2("articles//" + dw[0][1] + ".html")
+                put_info("articles//" + dw[0][1] + ".html")
             }
             //pc.innerHTML = getPic(wrd)
 
-            langtable(pc, dw[0][1])
 
-            content1.innerHTML = cont;
+            //content1.innerHTML += cont;
         } else {
             let stop = false
             let st = 0
@@ -373,16 +398,13 @@ function hndwrd(wrd) {
                 content1.innerHTML = cont;
             }
             else{
-
-                langtable(pc, dw[st][1])
-
+                content1.innerHTML = "";
+                langtable(content1, dw[st][1])
                 if (dw[st][1][0] == dw[st][1][0].toUpperCase()) {
-                    cont = readTextFile2("articles//_" + dw[st][1] + ".html")
+                    put_info("articles//_" + dw[st][1] + ".html")
                 } else {
-                    cont = readTextFile2("articles//" + dw[st][1] + ".html")
+                    put_info("articles//" + dw[st][1] + ".html")
                 }
-                //pc.innerHTML = getPic(wrd)
-                content1.innerHTML = cont;
             }
 
         }
@@ -410,9 +432,6 @@ function read_dictionary() {
                         //line[0] = line[0].replaceAll("́ё", 'ё')
                         //line[1] = line[1].replaceAll("́ё", 'ё')
 
-                        if(line[0] == "место"){
-                            console.log();
-                        }
 
                         if(dict[line[0]] == undefined){
                             dict[line[0]] = []

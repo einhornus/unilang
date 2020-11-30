@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+
+    <link rel="icon"
+          type="image/svg"
+          href="images/flags/ru.svg">
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="style.css"/>
+
+</head>
+<body>
+
+<div>
+    <h1></h1>
+    <input type="checkbox" id="lockbar" onclick="change()">
+    <label for="lockbar">Hide page scrollbar</label>
+</div>
+
+
+<script>
+    function getCookie_(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function setCookie_(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    let lb = document.getElementById("lockbar")
+    gc = getCookie_("lockbar")
+
+    if(gc == "true"){
+        lb.checked = true
+    }
+
+    function change(){
+        let lb = document.getElementById("lockbar")
+        setCookie_("lockbar", lb.checked, 1000);
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -7,6 +7,7 @@ let slider = null
 let output = null
 let parts = null
 let sc = null
+let jkname = ""
 
 function dojoke() {
     menu.hidden = !menu.hidden
@@ -20,7 +21,9 @@ function update_slider(){
     newjk = newjk.replaceAll("<br />", "\n")
     newjk = newjk.replaceAll("<br>", "\n")
     document.getElementById("text").value = newjk
-    output.innerHTML = "Page "+slider.value;
+    output.innerHTML = "Page "+slider.value+"/"+slider.max;
+
+    setCookie_(jkname, (slider.value-1), 10000)
 }
 
 function dofwd(){
@@ -37,8 +40,37 @@ function doback(){
     update_slider()
 }
 
+function setCookie_(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+
+function getCookie_(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 function show_joke(index){
     parts = get_text_parts("texts\\"+jokes[index][1])
+    jkname = jokes[index][1]
+
+    console.log(document.cookie)
+    let prevPage = getCookie_(jkname)
+
     var p = document.getElementById("p")
     var jk = parts[0];
     p.innerHTML = handleText(jk);
@@ -56,12 +88,22 @@ function show_joke(index){
     slider.value = 1
     output.innerHTML = "Page 1";
 
-    slider.oninput = function() {
-        update_slider()
+    var c = getCookie_("lockbar")
+
+    if(c != "true") {
+        slider.oninput = function() {
+                update_slider()
+        }
+    }
+    else{
+        slider.hidden = true
     }
 
     menu.hidden = true;
     sc.hidden = false
+
+    slider.value = parseInt(prevPage)+1;
+    update_slider()
 }
 
 function make_tree(list, root){

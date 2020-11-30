@@ -32,7 +32,7 @@
     <table>
         <tr>
 
-            <td width="70%">
+            <td width="40%">
                 <a href="#" onclick="f()">
                     <img src="images/scroll.svg" alt="Explore text" title="Linkify"
                          style="width:84px;height:84px;">
@@ -45,6 +45,22 @@
                 </a>
             </td>
 
+            <td width="30%">
+                <a href="settings_page.html" target="_blank">
+                    <img src="images/settings.svg" alt="Settings" title="Settings"
+                         style="width:84px;height:84px;">
+                </a>
+
+                <a href="#" onclick="handleback()">
+                    <img src="images/prev.svg" title="Previous article (left arrow key)"
+                         style="width:84px;height:84px;">
+                </a>
+
+                <a href="https://discord.gg/2sfFbZGbbN" target="_blank">
+                    <img src="images/discord.svg" alt="Discord" title="Join our discord"
+                         style="width:84px;height:84px;">
+                </a>
+            </td>
 
             <td width="30%">
 
@@ -101,27 +117,19 @@
 
 <header>
     <table>
-        <td width="35%">
-            <textarea type="text" id="text" cols=60 rows="14" placeholder="Enter some Russian text here"></textarea>
+        <td width="40%">
+            <textarea type="text" id="text" cols=30 rows="8" placeholder="Enter some Russian text here"></textarea>
         </td>
 
         <td width="0%" id="pics" id="pics" >
         </td>
 
-        <td width="65%" id="guide" >
-            <p>
-                <h4>Welcome to Unilang!</h4>
-                Just put some Russian text into the box on the left and click the parchment scroll icon above. It will turn words from the text into clickable links, so you can read the text while looking up articles on words you're unfamiliar with.<br>
+        <td width="30%" id="prono_part" >
 
-                <br>
-                You can also find some texts to read clicking on the book icon (right next to the parchment scroll).
-                <br>
-                <br>
-                Right under the text box there is the search box.
-                If you put a word here (that exists in English or in any of the languages you set in browser settings) and click the left icon, it will find the possible ways to translate this word to Russian.
-                If you put a Russian word (possibly misspelled) and click the right icon, it will find the most similar looking Russian words in the dictionary.
+        </td>
 
-            </p>
+        <td width="30%" id="ety_part" >
+
         </td>
 
 
@@ -164,7 +172,7 @@
                     <br>
 
                     <div class="slidecontainer" hidden="true" id = "sld">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange" width="">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
                         <p id="demo" style="width: 200px"></p>
 
                         <a href="#" onclick="doback()">
@@ -197,13 +205,30 @@
 </section>
 
 <script>
+    let instruction = " <h3>Welcome to Unilang</h3>\n" +
+        "            <p>\n" +
+        "                Just put some Russian text into the box on the left and click the parchment scroll icon above. It will turn words from the text into clickable links, so you can read the text while looking up articles on words you're unfamiliar with.\n" +
+        "                <br>\n" +
+        "                You can also find some texts to read clicking on the book icon (right next to the parchment scroll).\n" +
+        "            </p>"+ "<p>\n" +
+        "            Right under the text box there is the search box.\n" +
+        "                <br>\n" +
+        "                If you put a word here (that exists in English or in any of the languages you set in browser settings) and click the left icon, it will find the possible ways to translate this word to Russian.\n" +
+        "                <br>\n" +
+        "                If you put a Russian word (possibly misspelled) and click the right icon, it will find the most similar looking Russian words in the dictionary.\n" +
+        "            </p>"
+
+    document.getElementById("content").innerHTML = instruction
+
+
     //document.getElementById("searchfield").value = "на"
     //dosearch(1)
-    searchmean("language", get_additional_langs(), "ru", false)
+    searchmean("language", false)
 
+    //document.getElementById("searchfield").value = "language"
+    //dosearch(1)
 
-    //let r = handleText("она")
-
+    //hndwrd("зверек")
 
     make_menu()
 
