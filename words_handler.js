@@ -72,10 +72,6 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const input = urlParams.get('input')
 
-if (input != undefined) {
-    document.getElementById("text").value = input
-    f();
-}
 
 function rus(a) {
     punctuation = [
