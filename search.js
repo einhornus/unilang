@@ -164,7 +164,7 @@ function searchlevenstein(word, maxcnt) {
 }
 
 function get_english_transes(wrd){
-    res = []
+    __res = []
 
     let ri = reverse_links[wrd]
 
@@ -173,19 +173,19 @@ function get_english_transes(wrd){
             www = vocabs[ri[i]][1][0][0]
 
             let exi = false
-            for(let j = 0; j<res.length; j++){
-                if(res[j] == www){
+            for(let j = 0; j<__res.length; j++){
+                if(__res[j] == www){
                     exi = true
                     break
                 }
             }
 
             if(!exi){
-                res.push(www)
+                __res.push(www)
             }
         }
     }
-    return res;
+    return __res;
 }
 
 function dosearchsim(word) {
@@ -407,7 +407,7 @@ function searchmean(word, simple) {
 }
 
 function get_flag(lang) {
-    return "<img src=\"images/flags/" + lang + ".svg\" style=\"width:42px;height:42px;\">"
+    return "<img src=\"images/flags/" + lang + ".svg\" style=\"width:30px;height:30px;\">"
 }
 
 function do_ruby(text, lang) {

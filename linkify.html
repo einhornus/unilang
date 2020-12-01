@@ -35,30 +35,50 @@
             <td width="40%">
                 <a href="#" onclick="f()">
                     <img src="images/scroll.svg" alt="Explore text" title="Linkify"
-                         style="width:84px;height:84px;">
+                         style="width:50px;height:50px;">
                 </a>
 
 
                 <a href="#" onclick="dojoke()">
                     <img src="images/book.svg" alt="Random joke" title="Read texts"
-                         style="width:84px;height:84px;">
+                         style="width:50px;height:50px;">
+                </a>
+
+                <a href="#" onclick="ffff()">
+                    <img src="images/test.svg" alt="Vocabulary test" title="Vocabulary test"
+                         style="width:50px;height:50px;">
+                </a>
+
+                <a href="vocabulary_test.html?n=1000" target="_blank" id="star1" hidden="true">
+                    <img src="images/easy.svg" alt="Vocabulary test" title="Easy"
+                         style="width:30px;height:30px;">
+                </a>
+
+                <a href="vocabulary_test.html?n=5000" target="_blank" id="star2" hidden="true">
+                    <img src="images/medium.svg" alt="Vocabulary test" title="Medium"
+                         style="width:30px;height:30px;">
+                </a>
+
+                <a href="vocabulary_test.html" target="_blank" id="star3" hidden="true">
+                    <img src="images/hard.svg" alt="Vocabulary test" title="Hard"
+                         style="width:30px;height:30px;">
                 </a>
             </td>
 
             <td width="30%">
                 <a href="settings_page.html" target="_blank">
                     <img src="images/settings.svg" alt="Settings" title="Settings"
-                         style="width:84px;height:84px;">
+                         style="width:50px;height:50px;">
                 </a>
 
                 <a href="#" onclick="handleback()">
                     <img src="images/prev.svg" title="Previous article (left arrow key)"
-                         style="width:84px;height:84px;">
+                         style="width:50px;height:50px;">
                 </a>
 
                 <a href="https://discord.gg/2sfFbZGbbN" target="_blank">
                     <img src="images/discord.svg" alt="Discord" title="Join our discord"
-                         style="width:84px;height:84px;">
+                         style="width:50px;height:50px;">
                 </a>
             </td>
 
@@ -68,48 +88,48 @@
 
                 <a href="https://einhornus.github.io/unilang_en/linkify.html">
                     <img src="images/flags/en.svg" alt="English" title="English"
-                         style="width:42px;height:42px;">
+                         style="width:30px;height:30px;">
                 </a>
 
                 <a href="https://einhornus.github.io/unilang_sp/linkify.html">
                     <img src="images/flags/es.svg" alt="Spanish" title="Spanish"
-                         style="width:42px;height:42px;">
+                         style="width:30px;height:30px;">
                 </a>
 
 
                 <a href="https://einhornus.github.io/unilang_de/linkify.html">
                     <img src="images/flags/de.svg" alt="German" title="German"
-                         style="width:42px;height:42px;">
+                         style="width:30px;height:30px;">
                 </a>
 
                 <a href="https://einhornus.github.io/unilang_fr/linkify.html">
                     <img src="images/flags/fr.svg" alt="French" title="French"
-                         style="width:42px;height:42px;">
+                         style="width:30px;height:30px;">
                 </a>
 
                 <a href="https://einhornus.github.io/unilang/linkify.html">
                     <img src="images/flags/ru.svg" alt="Russian" title="Russian"
-                         style="background-color:lawngreen; width:42px;height:42px;">
+                         style="background-color:lawngreen; width:30px;height:30px;">
                 </a>
 
                 <a href="https://einhornus.github.io/unilang_pt/linkify.html">
                     <img src="images/flags/pt.svg" alt="Portuguese" title="Portuguese"
-                         style="width:42px;height:42px;">
+                         style="width:30px;height:30px;">
                 </a>
 
                 <a href="https://einhornus.github.io/unilang_it/linkify.html">
                     <img src="images/flags/it.svg" alt="Italian" title="Italian"
-                         style="width:42px;height:42px;">
+                         style="width:30px;height:30px;">
                 </a>
 
                 <a href="https://einhornus.github.io/unilang_nl/linkify.html">
                     <img src="images/flags/nl.svg" alt="Dutch" title="Dutch"
-                         style="width:42px;height:42px;">
+                         style="width:30px;height:30px;">
                 </a>
 
                 <a href="https://einhornus.github.io/unilang_sv/linkify.html">
                     <img src="images/flags/sv.svg" alt="Swedish" title="Swedish"
-                         style="width:42px;height:42px;">
+                         style="width:30px;height:30px;">
                 </a>
             </td>
     </table>
@@ -121,14 +141,14 @@
             <textarea type="text" id="text" cols=30 rows="8" placeholder="Enter some Russian text here"></textarea>
         </td>
 
-        <td width="0%" id="pics" id="pics" >
+        <td width="0%" id="pics" id="pics">
         </td>
 
-        <td width="30%" id="prono_part" >
+        <td width="30%" id="prono_part">
 
         </td>
 
-        <td width="30%" id="ety_part" >
+        <td width="30%" id="ety_part">
 
         </td>
 
@@ -171,7 +191,7 @@
                     <br>
                     <br>
 
-                    <div class="slidecontainer" hidden="true" id = "sld">
+                    <div class="slidecontainer" hidden="true" id="sld">
                         <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
                         <p id="demo" style="width: 200px"></p>
 
@@ -210,7 +230,7 @@
         "                Just put some Russian text into the box on the left and click the parchment scroll icon above. It will turn words from the text into clickable links, so you can read the text while looking up articles on words you're unfamiliar with.\n" +
         "                <br>\n" +
         "                You can also find some texts to read clicking on the book icon (right next to the parchment scroll).\n" +
-        "            </p>"+ "<p>\n" +
+        "            </p>" + "<p>\n" +
         "            Right under the text box there is the search box.\n" +
         "                <br>\n" +
         "                If you put a word here (that exists in English or in any of the languages you set in browser settings) and click the left icon, it will find the possible ways to translate this word to Russian.\n" +
@@ -229,6 +249,12 @@
     //dosearch(1)
 
     //hndwrd("зверек")
+
+    function ffff() {
+        document.getElementById("star1").hidden = !document.getElementById("star1").hidden
+        document.getElementById("star2").hidden = !document.getElementById("star2").hidden
+        document.getElementById("star3").hidden = !document.getElementById("star3").hidden
+    }
 
     make_menu()
 

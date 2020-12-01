@@ -86,6 +86,17 @@ sel {
     background-color: green;
 }
 
+.mybutton {
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 8px;
+    padding: 10px 30px;
+    background-color: #aaaaaa;
+}
+
+
 section:after {
     content: "";
     display: table;

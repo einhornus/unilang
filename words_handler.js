@@ -5,6 +5,7 @@ let poses = []
 let nietpushen = false
 
 let pics = null
+let plainwordlist = []
 
 function handleback() {
     if (history.length <= 1) {
@@ -364,8 +365,6 @@ function hndwrd(wrd) {
 
         dw = dict[wrd]
 
-        console.log("DW", dw)
-
         if (dw.length == 1) {
             langtable(content1, dw[0][1])
 
@@ -415,6 +414,7 @@ function hndwrd(wrd) {
 
 function read_dictionary() {
     dict = {}
+    plainwordlist = []
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", "dictionary_simple.txt", false);
     rawFile.onreadystatechange = function () {
@@ -439,6 +439,9 @@ function read_dictionary() {
 
                         dict[line[0]].push([line[1], line[2]])
 
+                        if(plainwordlist.length == 0 || (plainwordlist.length > 0 && line[2] != plainwordlist[plainwordlist.length - 1])){
+                            plainwordlist.push(line[2])
+                        }
                     }
                 }
             }
