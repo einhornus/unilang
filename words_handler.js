@@ -72,6 +72,11 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const input = urlParams.get('input')
 
+if (input != undefined) {
+    window.location.href = "https://einhornus.github.io/unilang/linkify.html";
+    //document.getElementById("text").value = input
+    //f();
+}
 
 function rus(a) {
     punctuation = [
