@@ -29,6 +29,10 @@ function handleback() {
 }
 
 
+//var _0x4897=['getElementById',history_pullback("his"),'toUpperCase','push','<li>','scrollTop','innerHTML','ety_part','\x20is\x20a\x20form\x20of\x20<a\x20href=\x22#\x22\x20onclick=\x22hndwrd(\x27','length','documentElement','.html','<h1>Disambiguation</h1>\x20<br>\x20<ol>','\x27)\x22>',history_pullback("his")+'_','prono_part','<ul>','log'];(function(_0x71a40f,_0x5694fc){var _0x48975e=function(_0x1bbc6d){while(--_0x1bbc6d){_0x71a40f['push'](_0x71a40f['shift']());}};_0x48975e(++_0x5694fc);}(_0x4897,0x137));var _0x1bbc=function(_0x71a40f,_0x5694fc){_0x71a40f=_0x71a40f-0x1ea;var _0x48975e=_0x4897[_0x71a40f];return _0x48975e;};function hndwrd(_0x5b669d){var _0x3551ea=_0x1bbc;if(!(_0x5b669d==undefined)){!nietpushen&&(history[_0x3551ea(0x1fa)](_0x5b669d),history[_0x3551ea(0x1ee)]>0x1&&poses['push'](document[_0x3551ea(0x1ef)][_0x3551ea(0x1ea)]));var _0x3ffa2f=document[_0x3551ea(0x1f7)](_0x3551ea(0x1f4)),_0x2c30ba=document[_0x3551ea(0x1f7)](_0x3551ea(0x1ec));_0x3ffa2f[_0x3551ea(0x1eb)]='',_0x2c30ba[_0x3551ea(0x1eb)]='';var _0x57f2b6=document['getElementById']('content');_0x57f2b6[_0x3551ea(0x1eb)]='',dw=dict[_0x5b669d];if(dw['length']==0x1)langtable(_0x57f2b6,dw[0x0][0x1]),dw[0x0][0x1][0x0]==dw[0x0][0x1][0x0][_0x3551ea(0x1f9)]()?put_info(_0x3551ea(0x1f3)+dw[0x0][0x1]+_0x3551ea(0x1f0)):put_info(_0x3551ea(0x1f8)+dw[0x0][0x1]+_0x3551ea(0x1f0));else{let _0x1ac940=![],_0x1c03ec=0x0;cont=_0x3551ea(0x1f1);for(let _0x5007a3=0x0;_0x5007a3<dw['length'];_0x5007a3++){console[_0x3551ea(0x1f6)](dw[_0x5007a3]),cont+=_0x3551ea(0x1fb)+dw[_0x5007a3][0x0]+_0x3551ea(0x1ed)+dw[_0x5007a3][0x1]+_0x3551ea(0x1f2)+dw[_0x5007a3][0x1]+'</a></li>',dw[_0x5007a3][0x1]==_0x5b669d&&(_0x1ac940=!![],_0x1c03ec=_0x5007a3);}cont+=_0x3551ea(0x1f5),_0x57f2b6['innerHTML']=cont,!_0x1ac940?_0x57f2b6[_0x3551ea(0x1eb)]=cont:(_0x57f2b6[_0x3551ea(0x1eb)]='',langtable(_0x57f2b6,dw[_0x1c03ec][0x1]),dw[_0x1c03ec][0x1][0x0]==dw[_0x1c03ec][0x1][0x0]['toUpperCase']()?put_info(_0x3551ea(0x1f3)+dw[_0x1c03ec][0x1]+_0x3551ea(0x1f0)):put_info(_0x3551ea(0x1f8)+dw[_0x1c03ec][0x1]+'.html'));}nietpushen=![];}}
+
+
+
 function readTextFile2(file)
 {
     res = ""
@@ -73,7 +77,7 @@ const urlParams = new URLSearchParams(queryString);
 const input = urlParams.get('input')
 
 if (input != undefined) {
-    window.location.href = "https://einhornus.github.io/unilang/linkify.html";
+    window.location.href = "linkify.html";
     //document.getElementById("text").value = input
     //f();
 }
@@ -325,7 +329,94 @@ function put_info(link){
     ety.innerHTML = _parts[1];
 }
 
-var _0x4897=['getElementById',history_pullback("his"),'toUpperCase','push','<li>','scrollTop','innerHTML','ety_part','\x20is\x20a\x20form\x20of\x20<a\x20href=\x22#\x22\x20onclick=\x22hndwrd(\x27','length','documentElement','.html','<h1>Disambiguation</h1>\x20<br>\x20<ol>','\x27)\x22>',history_pullback("his")+'_','prono_part','<ul>','log'];(function(_0x71a40f,_0x5694fc){var _0x48975e=function(_0x1bbc6d){while(--_0x1bbc6d){_0x71a40f['push'](_0x71a40f['shift']());}};_0x48975e(++_0x5694fc);}(_0x4897,0x137));var _0x1bbc=function(_0x71a40f,_0x5694fc){_0x71a40f=_0x71a40f-0x1ea;var _0x48975e=_0x4897[_0x71a40f];return _0x48975e;};function hndwrd(_0x5b669d){var _0x3551ea=_0x1bbc;if(!(_0x5b669d==undefined)){!nietpushen&&(history[_0x3551ea(0x1fa)](_0x5b669d),history[_0x3551ea(0x1ee)]>0x1&&poses['push'](document[_0x3551ea(0x1ef)][_0x3551ea(0x1ea)]));var _0x3ffa2f=document[_0x3551ea(0x1f7)](_0x3551ea(0x1f4)),_0x2c30ba=document[_0x3551ea(0x1f7)](_0x3551ea(0x1ec));_0x3ffa2f[_0x3551ea(0x1eb)]='',_0x2c30ba[_0x3551ea(0x1eb)]='';var _0x57f2b6=document['getElementById']('content');_0x57f2b6[_0x3551ea(0x1eb)]='',dw=dict[_0x5b669d];if(dw['length']==0x1)langtable(_0x57f2b6,dw[0x0][0x1]),dw[0x0][0x1][0x0]==dw[0x0][0x1][0x0][_0x3551ea(0x1f9)]()?put_info(_0x3551ea(0x1f3)+dw[0x0][0x1]+_0x3551ea(0x1f0)):put_info(_0x3551ea(0x1f8)+dw[0x0][0x1]+_0x3551ea(0x1f0));else{let _0x1ac940=![],_0x1c03ec=0x0;cont=_0x3551ea(0x1f1);for(let _0x5007a3=0x0;_0x5007a3<dw['length'];_0x5007a3++){console[_0x3551ea(0x1f6)](dw[_0x5007a3]),cont+=_0x3551ea(0x1fb)+dw[_0x5007a3][0x0]+_0x3551ea(0x1ed)+dw[_0x5007a3][0x1]+_0x3551ea(0x1f2)+dw[_0x5007a3][0x1]+'</a></li>',dw[_0x5007a3][0x1]==_0x5b669d&&(_0x1ac940=!![],_0x1c03ec=_0x5007a3);}cont+=_0x3551ea(0x1f5),_0x57f2b6['innerHTML']=cont,!_0x1ac940?_0x57f2b6[_0x3551ea(0x1eb)]=cont:(_0x57f2b6[_0x3551ea(0x1eb)]='',langtable(_0x57f2b6,dw[_0x1c03ec][0x1]),dw[_0x1c03ec][0x1][0x0]==dw[_0x1c03ec][0x1][0x0]['toUpperCase']()?put_info(_0x3551ea(0x1f3)+dw[_0x1c03ec][0x1]+_0x3551ea(0x1f0)):put_info(_0x3551ea(0x1f8)+dw[_0x1c03ec][0x1]+'.html'));}nietpushen=![];}}
+
+function hndwrd(wrd)
+{
+    if (!(wrd == undefined))
+    {
+        if (!nietpushen)
+        {
+            history.push(wrd)
+
+            if (history.length > 1)
+            {
+                poses.push(document.documentElement.scrollTop)
+            }
+        }
+
+        var prono = document.getElementById("prono_part")
+        var ety = document.getElementById("ety_part")
+        prono.innerHTML = "";
+        ety.innerHTML = "";
+
+
+        var content1 = document.getElementById("content")
+        //var pc = document.getElementById("guide")
+        //pc.innerHTML = ""
+
+        content1.innerHTML = "";
+
+        dw = dict[wrd]
+
+        if (dw.length == 1)
+        {
+            langtable(content1, dw[0][1])
+
+            if (dw[0][1][0] == dw[0][1][0].toUpperCase())
+            {
+
+                put_info("articles//_" + dw[0][1] + ".html")
+            }
+            else
+            {
+                put_info("articles//" + dw[0][1] + ".html")
+            }
+            //pc.innerHTML = getPic(wrd)
+
+            //content1.innerHTML += cont;
+        }
+        else
+        {
+            let stop = false
+            let st = 0
+            cont = "<h1>Disambiguation</h1> <br> <ol>"
+            for (let j = 0; j < dw.length; j++)
+            {
+                console.log(dw[j])
+                cont += "<li>" + dw[j][0] + " is a form of <a href=\"#\" onclick=\"hndwrd('" + dw[j][1] + "')\">" + dw[j][1] + "</a></li>"
+                if (dw[j][1] == wrd)
+                {
+                    stop = true
+                    st = j
+                }
+            }
+            cont += "<ul>"
+            content1.innerHTML = cont;
+
+            if (!stop)
+            {
+                content1.innerHTML = cont;
+            }
+            else
+            {
+                content1.innerHTML = "";
+                langtable(content1, dw[st][1])
+                if (dw[st][1][0] == dw[st][1][0].toUpperCase())
+                {
+                    put_info("articles//_" + dw[st][1] + ".html")
+                }
+                else
+                {
+                    put_info("articles//" + dw[st][1] + ".html")
+                }
+            }
+
+        }
+
+        nietpushen = false
+    }
+}
+
 
 
 function read_dictionary() {
