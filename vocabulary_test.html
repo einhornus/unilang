@@ -14,6 +14,7 @@
 
     <script type="text/javascript" src="obfusc.js"></script>
     <script type="text/javascript" src="search.js"></script>
+    <script type="text/javascript" src="jokes.js"></script>
 
 
     <title>Vocabulary test</title>
@@ -304,6 +305,43 @@
         }
 
     }
+
+
+    let __mt = getCookie_("mt")
+    if(__mt == ""){
+        setCookie_("mt", "1", 1000)
+    }
+
+    let __inf = getCookie_("inf")
+    if(__inf == ""){
+        setCookie_("inf", "0", 1000)
+    }
+
+    let __rt = getCookie_("rt")
+    if(__rt == ""){
+        setCookie_("rt", "0", 1000)
+    }
+
+    let __un = getCookie_("un")
+    if(__un == ""){
+        setCookie_("un", "0", 1000)
+    }
+
+    let __syn = getCookie_("syn")
+    if(__syn == ""){
+        setCookie_("syn", "0", 1000)
+    }
+
+    let __rel = getCookie_("rel")
+    if(__rel == ""){
+        setCookie_("rel", "0", 1000)
+    }
+
+    let __der = getCookie_("der")
+    if(__der == ""){
+        setCookie_("der", "0", 1000)
+    }
+
 
     searchmean("language", false)
     readvoc("vocab2.txt")

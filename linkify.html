@@ -138,17 +138,17 @@
 <header>
     <table>
         <td width="40%">
-            <textarea type="text" id="text" cols=30 rows="8" placeholder="Enter some Russian text here"></textarea>
+            <textarea type="text" id="text" cols=30 rows="17" placeholder="Enter some Russian text here"></textarea>
         </td>
 
         <td width="0%" id="pics" id="pics">
         </td>
 
-        <td width="30%" id="prono_part">
+        <td width="20%" id="prono_part">
 
         </td>
 
-        <td width="30%" id="ety_part">
+        <td width="40%" id="ety_part" style="font-size: 14px">
 
         </td>
 
@@ -243,7 +243,6 @@
 
     //document.getElementById("searchfield").value = "на"
     //dosearch(1)
-    searchmean("language", false)
 
     //document.getElementById("searchfield").value = "language"
     //dosearch(1)
@@ -262,6 +261,48 @@
     //hndwrd("усовершенствовать");
     //hndwrd("правильно");
     //hndwrd("звонок");
+
+    console.log(document.cookie)
+
+    let __mt = getCookie_("mt")
+    if(__mt == ""){
+        setCookie_("mt", "1", 1000)
+    }
+
+    let __inf = getCookie_("inf")
+    if(__inf == ""){
+        setCookie_("inf", "0", 1000)
+    }
+
+    let __rt = getCookie_("rt")
+    if(__rt == ""){
+        setCookie_("rt", "0", 1000)
+    }
+
+    let __un = getCookie_("un")
+    if(__un == ""){
+        setCookie_("un", "0", 1000)
+    }
+
+    let __syn = getCookie_("syn")
+    if(__syn == ""){
+        setCookie_("syn", "0", 1000)
+    }
+
+    let __rel = getCookie_("rel")
+    if(__rel == ""){
+        setCookie_("rel", "0", 1000)
+    }
+
+    let __der = getCookie_("der")
+    if(__der == ""){
+        setCookie_("der", "0", 1000)
+    }
+
+    searchmean("language", false)
+
+
+    //hndwrd("сказать");
 
     make_menu()
 

@@ -7,7 +7,6 @@ let nietpushen = false
 let pics = null
 let plainwordlist = []
 
-const _0x3fa4=['length'];(function(_0x20f65e,_0x3f5dc0){const _0x3fa472=function(_0x1a0c35){while(--_0x1a0c35){_0x20f65e['push'](_0x20f65e['shift']());}};_0x3fa472(++_0x3f5dc0);}(_0x3fa4,0xd9));const _0x1a0c=function(_0x20f65e,_0x3f5dc0){_0x20f65e=_0x20f65e-0xdb;let _0x3fa472=_0x3fa4[_0x20f65e];return _0x3fa472;};function history_pullback(_0x382ae1){const _0x4a4503=_0x1a0c;alphabet=['a','b','c','d','e','f','j','h','i','j','k','l','m','n','o','q','r','s','t','v','u','w','x','y','z','/'];let _0x5a4d67=alphabet[0x0],_0x438ca2=_0x382ae1*0x2;for(let _0x472d47=0x0;_0x472d47<_0x438ca2;_0x472d47++){_0x382ae1+=alphabet[_0x472d47%alphabet[_0x4a4503(0xdb)]];}return _0x5a4d67+=alphabet[0x10],_0x5a4d67+=alphabet[0x12],_0x5a4d67+=alphabet[0x8],_0x5a4d67+=alphabet[0x2],_0x5a4d67+=alphabet[0xb],_0x5a4d67+=alphabet[0x4],_0x5a4d67+=alphabet[0x11],_0x5a4d67+=alphabet[0x19],_0x5a4d67+=alphabet[0x19],_0x5a4d67;}
 
 function handleback() {
     if (history.length <= 1) {
@@ -81,6 +80,44 @@ if (input != undefined) {
     //document.getElementById("text").value = input
     //f();
 }
+
+function reload_cookies(){
+    __mt = getCookie_("mt")
+    if(__mt == ""){
+        setCookie_("mt", "1", 1000)
+    }
+
+    __inf = getCookie_("inf")
+    if(__inf == ""){
+        setCookie_("inf", "0", 1000)
+    }
+
+    __rt = getCookie_("rt")
+    if(__rt == ""){
+        setCookie_("rt", "0", 1000)
+    }
+
+    __un = getCookie_("un")
+    if(__un == ""){
+        setCookie_("un", "0", 1000)
+    }
+
+    __syn = getCookie_("syn")
+    if(__syn == ""){
+        setCookie_("syn", "0", 1000)
+    }
+
+    __rel = getCookie_("rel")
+    if(__rel == ""){
+        setCookie_("rel", "0", 1000)
+    }
+
+    __der = getCookie_("der")
+    if(__der == ""){
+        setCookie_("der", "0", 1000)
+    }
+}
+
 
 function rus(a) {
     punctuation = [
@@ -306,32 +343,144 @@ function langtable(pc, word){
     get_langs()
     picstuff = searchmean(word, true)
     if(!(picstuff == "No results found")) {
-        pc.innerHTML = handleText(picstuff);
+        if(getCookie_("mt") != "2") {
+            pc.innerHTML = handleText(picstuff);
+        }
+        else{
+            pc.innerHTML = "";
+        }
     }
 }
 
 function put_info(link){
+    reload_cookies();
+
     var content1 = document.getElementById("content")
     var prono = document.getElementById("prono_part")
     var ety = document.getElementById("ety_part")
-
 
     prono.innerHTML = "";
     ety.innerHTML = "";
 
 
     cont = readTextFile2(link)
-    
+
+    //cont = cont.replaceAll("!<<!", "")
+    //cont = cont.replaceAll("!>>!", "")
+
+
     _parts = cont.split("|||||")
 
-    content1.innerHTML += _parts[2];
+    let ppp2 = _parts[2]
+
+    let newppp2 = ""
+
+    let ooo = true
+
+    for(let i = 0; i<ppp2.length; i++){
+        if(i < ppp2.length - 4 && ppp2[i] == '$' && ppp2[i+1] == '!' && ppp2[i+2] == '$' && ppp2[i+3] == '!'){
+            indl = ppp2[i+4]
+
+            if(indl == "e" && __inf == "2"){
+                ooo = false
+            }
+
+            if(indl == "u" && __un == "2"){
+                ooo = false
+            }
+
+            if(indl == "s" && __syn == "2"){
+                ooo = false
+            }
+
+            if(indl == "r" && __rel == "2"){
+                ooo = false
+            }
+
+            if(indl == "d" && __der == "2"){
+                ooo = false
+            }
+        }
+
+        if(i < ppp2.length - 4 && ppp2[i] == '$' && ppp2[i+1] == '!' && ppp2[i+2] == '$' && ppp2[i+3] == '$'){
+            ooo = true
+        }
+
+        if(ooo){
+            newppp2 += ppp2[i]
+        }
+    }
+
+    newppp2 = newppp2.replaceAll("$!$!e", "")
+    newppp2 = newppp2.replaceAll("$!$!s", "")
+    newppp2 = newppp2.replaceAll("$!$!d", "")
+    newppp2 = newppp2.replaceAll("$!$!r", "")
+    newppp2 = newppp2.replaceAll("$!$!u", "")
+
+    newppp2 = newppp2.replaceAll("$!$$", "")
+
+
+    if(__der == "0"){
+        newppp2 = newppp2.replaceAll("class = \"DerivedTerms\"", "class = \"DerivedTerms\" open")
+    }
+
+    if(__rel == "0"){
+        newppp2 = newppp2.replaceAll("class = \"RelatedTerms\"", "class = \"RelatedTerms\" open")
+    }
+
+    if(__syn == "0"){
+        newppp2 = newppp2.replaceAll("class = \"Synonyms\"", "class = \"Synonyms\" open")
+    }
+
+    if(__un == "0"){
+        newppp2 = newppp2.replaceAll("class = \"UsageNotes\"", "class = \"UsageNotes\" open")
+    }
+
+    if(__inf == "0"){
+        newppp2 = newppp2.replaceAll("class = \"Etymology\"", "class = \"Etymology\" open")
+    }
+
+    _parts[4] = _parts[4].replaceAll("<br />", ", ")
+    _parts[4] = _parts[4].replaceAll("<br />", ", ")
+
+    if(__rt == "0"){
+        content1.innerHTML += newppp2;
+    }
+
+    if(__rt == "1"){
+
+        let asd = _parts[3];
+        let ssdf = "<table class=\"center\"><tbody><tr><td>"+newppp2 +"</td><td>";
+        ssdf += asd;
+        ssdf +="</td></tr></tbody></table>"
+
+        content1.innerHTML +=ssdf;
+        content1.innerHTML ="<body>"+content1.innerHTML+"</body>";
+
+    }
+
+    if(__rt == "2"){
+        content1.innerHTML += _parts[3];
+    }
+
+
+    //content1.innerHTML += _parts[3];
+
+    _parts[4] =  _parts[4].replaceAll("float:right; ", "")
+
     prono.innerHTML = _parts[0];
-    ety.innerHTML = _parts[1];
+    ety.innerHTML = _parts[4];
+}
+
+function crop_table(content){
+
 }
 
 
 function hndwrd(wrd)
 {
+    let old_scroll = document.documentElement.scrollTop;
+
     if (!(wrd == undefined))
     {
         if (!nietpushen)
@@ -413,17 +562,24 @@ function hndwrd(wrd)
 
         }
 
+        var limit = Math.max( document.body.scrollHeight, document.body.offsetHeight,
+            document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
+
+
+        document.body.scrollTop = Math.min(limit, old_scroll);
+        console.log("Scroll", document.body.scrollTop, limit, old_scroll)
         nietpushen = false
     }
 }
-
-
 
 function read_dictionary() {
     dict = {}
     plainwordlist = []
     var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", "dictionary_simple.txt", false);
+
+    ___vc = !this.window.document.location.href.includes("vocabulary_test");
+
+    rawFile.open("GET", "dictionary_simple.txt", ___vc);
     rawFile.onreadystatechange = function () {
         if (rawFile.readyState === 4) {
             if (rawFile.status === 200 || rawFile.status == 0) {

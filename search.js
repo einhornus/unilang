@@ -339,6 +339,11 @@ function searchmean(word, simple) {
     }
 
     let lim = 1000
+
+    if(__mt == "1"){
+        lim = 2
+    }
+
     let detailed = table[0].length > lim
 
     let full = "<table class='searchtable'>"
