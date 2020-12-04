@@ -340,7 +340,7 @@ function searchmean(word, simple) {
 
     let lim = 1000
 
-    if(__mt == "1"){
+    if(__mt == "1" && simple){
         lim = 2
     }
 
