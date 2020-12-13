@@ -1,7 +1,0 @@
-root//Fairy tales//Красная шапочка;rodkapje;0r
-root//Fairy tales//Три поросёнка;3pigs;0
-root//Fairy tales//Рапунцель;rapuntzel;0
-root//Humor//Jokes//Easy;easy_jokes;0
-root//Humor//Jokes//Medium;medium_jokes;0
-root//Songs//Агата Кристи//Опиум для никого;опиум_для_никого;0
-root//Fantasy//Александр Рудазов//Архимаг;archimag1;0

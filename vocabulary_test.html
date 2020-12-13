@@ -12,7 +12,9 @@
           type="image/svg"
           href="images/flags/ru.svg">
 
-    <script type="text/javascript" src="obfusc.js"></script>
+    <script type="text/javascript" src="dep.js"></script>
+    <script type="text/javascript" src="api_requests.js"></script>
+    <script type="text/javascript" src="words_handler.js"></script>
     <script type="text/javascript" src="search.js"></script>
     <script type="text/javascript" src="jokes.js"></script>
 
@@ -384,44 +386,6 @@
                 test_vocab.push(_locallist)
             }
         }
-
-        //console.log(test_vocab)
-        /*
-        var rawFile = new XMLHttpRequest();
-        rawFile.open("GET", file, false);
-        rawFile.onreadystatechange = function ()
-        {
-            if(rawFile.readyState === 4)
-            {
-                if(rawFile.status === 200 || rawFile.status == 0)
-                {
-                    var allText = rawFile.responseText;
-
-                    let lines = allText.split(/\r?\n/);
-                    //console.log(lines);
-
-                    let prevIndex = 0
-                    for (let i = 0; i < lines.length; i++) {
-                        let line = lines[i].split(";");
-                        index = parseInt(line[3])
-                        pos = line[2]
-                        word = line[0]
-                        def = line[1]
-
-                        if(index != prevIndex) {
-                            test_vocab.push([])
-                            prevIndex = index
-                        }
-
-                        test_vocab[test_vocab.length - 1].push([word, def, pos])
-                    }
-                }
-            }
-
-        }
-
-        rawFile.send(null);
-         */
     }
 
 </script>

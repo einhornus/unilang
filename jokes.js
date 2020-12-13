@@ -15,6 +15,7 @@ function dojoke() {
 
 function update_slider(){
     var jk = parts[slider.value-1];
+
     p.innerHTML = handleText(jk);
     newjk = jk
     newjk = newjk.replaceAll("</br>", "\n")
@@ -65,11 +66,46 @@ function getCookie_(cname) {
 }
 
 function show_joke(index){
-    parts = get_text_parts("texts\\"+jokes[index][1])
+    console.log("texts\\"+jokes[index][1]+"_"+__real_lang)
+
+    let __parts = {}
+
+
+    __parts["main"] = get_text_parts("texts\\"+jokes[index][1]+"_"+__real_lang)
+    for(let i = 0; i<std_langs.length; i++){
+        if(existing_langs[i]){
+            __parts[std_langs[i]] = get_text_parts("texts\\"+jokes[index][1]+"_"+std_langs[i])
+        }
+    }
+
+    parts = []
+    for(let j = 0; j<__parts["main"].length; j++){
+        _part = ""
+        _part += __parts["main"][j]+"\n"
+        for(let i = 0; i<std_langs.length; i++) {
+            if (existing_langs[i]) {
+                if(__parts[std_langs[i]] != undefined && std_langs[i]!=__real_lang){
+                    _part += "\n"
+                    _part += "<details>\n"
+                    _part += "<summary>\n"
+                    _part += "Translation ("+std_langs[i]+")\n"
+                    _part += "</summary>\n"
+                    _part += __parts[std_langs[i]][j]
+                    _part += "</details>\n"
+                    _part+="\n"
+                }
+            }
+        }
+        parts.push(_part)
+    }
+
     jkname = jokes[index][1]
 
     console.log(document.cookie)
     let prevPage = getCookie_(jkname)
+    if(prevPage == ""){
+        prevPage = 0;
+    }
 
     var p = document.getElementById("p")
     var jk = parts[0];
@@ -181,7 +217,7 @@ function make_menu(){
 function parsejokes()
 {
     var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", "jokes.txt", false);
+    rawFile.open("GET", "lang_libs//"+__real_lang+".txt", false);
     rawFile.onreadystatechange = function ()
     {
         if(rawFile.readyState === 4)
@@ -213,7 +249,7 @@ function parsejokes()
 
 function get_text_parts(name)
 {
-    let parts = []
+    let __parts = []
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", name, false);
     rawFile.onreadystatechange = function ()
@@ -237,19 +273,21 @@ function get_text_parts(name)
                                 prev += line+"<br>"
                             } else {
                                 if(prev != null) {
-                                    parts.push(prev)
+                                    __parts.push(prev)
                                 }
                                 prev = ""
                             }
                         }
                     }
                 }
+
+                //return __parts
             }
         }
     }
 
     rawFile.send(null);
-    return parts
+    return __parts
 }
 
 

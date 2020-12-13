@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <head>
-    <script type="text/javascript" src="obfusc.js"></script>
+    <script type="text/javascript" src="dep.js"></script>
+    <script type="text/javascript" src="api_requests.js"></script>
+    <script type="text/javascript" src="words_handler.js"></script>
     <script type="text/javascript" src="jokes.js"></script>
     <script type="text/javascript" src="search.js"></script>
     <script type="text/javascript" src="levenstein.js"></script>
-    <script type="text/javascript" src="dep.js"></script>
     <script type="text/javascript" src="style.css"></script>
     <script type="text/javascript" src="TreeMenu.js"></script>
 
@@ -31,7 +32,6 @@
 
     <table>
         <tr>
-
             <td width="40%">
                 <a href="#" onclick="f()">
                     <img src="images/scroll.svg" alt="Explore text" title="Linkify"
@@ -49,18 +49,23 @@
                          style="width:50px;height:50px;">
                 </a>
 
-                <a href="vocabulary_test.html?n=1000" target="_blank" id="star1" hidden="true">
-                    <img src="images/easy.svg" alt="Vocabulary test" title="Easy"
+                <a href="#" onclick="ffff2()">
+                    <img src="images/listening.svg" alt="Listening" title="Listening"
+                         style="width:50px;height:50px;">
+                </a>
+
+                <a href="#" target="_blank" id="star1" hidden="true" onclick="do_test(0)">
+                    <img src="images/easy.svg" title="Easy"
                          style="width:30px;height:30px;">
                 </a>
 
-                <a href="vocabulary_test.html?n=5000" target="_blank" id="star2" hidden="true">
-                    <img src="images/medium.svg" alt="Vocabulary test" title="Medium"
+                <a href="#" target="_blank" id="star2" hidden="true" onclick="do_test(1)">
+                    <img src="images/medium.svg" title="Medium"
                          style="width:30px;height:30px;">
                 </a>
 
-                <a href="vocabulary_test.html" target="_blank" id="star3" hidden="true">
-                    <img src="images/hard.svg" alt="Vocabulary test" title="Hard"
+                <a href="#" target="_blank" id="star3" hidden="true" onclick="do_test(2)">
+                    <img src="images/hard.svg" title="Hard"
                          style="width:30px;height:30px;">
                 </a>
             </td>
@@ -138,7 +143,7 @@
 <header>
     <table>
         <td width="40%">
-            <textarea type="text" id="text" cols=30 rows="17" placeholder="Enter some Russian text here"></textarea>
+            <textarea type="text" id="text" cols=30 rows="14" placeholder="Enter some Russian text here"></textarea>
         </td>
 
         <td width="0%" id="pics" id="pics">
@@ -148,11 +153,9 @@
 
         </td>
 
-        <td width="40%" id="ety_part" style="font-size: 14px">
+        <td width="40%" id="ety_part" style="font-size: 16px">
 
         </td>
-
-
     </table>
 </header>
 
@@ -215,7 +218,7 @@
 
 
         <div id="bodydesc">
-            <p id="p" style="width: 90%; font-size:16px"></p>
+            <p id="p" style="width: 90%; font-size:16px font-family:Consolas"></p>
         </div>
 
     </nav>
@@ -249,10 +252,53 @@
 
     //hndwrd("зверек")
 
+    let fff_thing = 0;
+
     function ffff() {
         document.getElementById("star1").hidden = !document.getElementById("star1").hidden
         document.getElementById("star2").hidden = !document.getElementById("star2").hidden
         document.getElementById("star3").hidden = !document.getElementById("star3").hidden
+        fff_thing = 1;
+    }
+
+    function ffff2() {
+        document.getElementById("star1").hidden = !document.getElementById("star1").hidden
+        document.getElementById("star2").hidden = !document.getElementById("star2").hidden
+        document.getElementById("star3").hidden = !document.getElementById("star3").hidden
+        fff_thing = 2;
+    }
+
+    function do_test(n){
+        if(fff_thing == 1){
+            openvoc(n)
+        }
+
+        if(fff_thing == 2){
+            openlistening(n)
+        }
+    }
+
+    function openvoc(ind){
+        link = "vocabulary_test.html?";
+
+        if(ind == 0){
+            link+="n="+1000+"&"
+        }
+
+        if(ind == 1){
+            link+="n="+5000+"&"
+        }
+
+        if(ind == 2){
+            //link+="n="+5000+"&"
+        }
+        window.open(link,'_blank');
+    }
+
+    function openlistening(ind){
+        link = "listening.html?";
+        link+="lvl="+ind+"&"
+        window.open(link,'_blank');
     }
 
     //hndwrd("кабан");
@@ -300,7 +346,6 @@
     }
 
     searchmean("language", false)
-
 
     //hndwrd("сказать");
 

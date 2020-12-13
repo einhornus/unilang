@@ -1,7 +1,5 @@
 let vocabs = null;
-let std_langs = ["en", "es", "de", "fr", "ru", "pt", "it", "nl", "sv"]
 let existing_langs = [1, 0, 0, 0, 1, 0, 0, 0, 0]
-let main_lang = 4
 let reverse_links = {}
 
 get_langs()
@@ -28,7 +26,7 @@ function dosearch(index) {
     }
 
     console.log("Stuff = ", stuff)
-    putText(stuff)
+    putText(stuff, false)
 }
 
 
@@ -98,7 +96,7 @@ function readTextFile3() {
 
                 for (let i = 0; i < vocabs.length; i++) {
                     good = false
-                    set = vocabs[i][1][4]
+                    set = vocabs[i][1][main_lang]
 
                     for(let j = 0; j<set.length; j++){
                         w = set[j]
@@ -215,7 +213,7 @@ function dosearchsim(word) {
 }
 
 function get_langs() {
-    existing_langs[4] = 1;
+    existing_langs[main_lang] = 1;
 
     if (navigator.languages != undefined) {
         for (let j = 0; j < std_langs.length; j++) {
@@ -289,8 +287,12 @@ function make_table(word, simple) {
     }
 
     let lang_inds = []
+    let mlin = 0
     for(let i = 0; i<std_langs.length; i++){
         if(existing_langs[i] == 1){
+            if(main_lang == i){
+                mlin = lang_inds.length
+            }
             lang_inds.push(i)
         }
     }
@@ -305,9 +307,6 @@ function make_table(word, simple) {
             def = p1[0]
             pos = p1[1].toLowerCase()
 
-            if(simple){
-                console.log()
-            }
 
             if (i == 0) {
                 def = def.replace(p2[0]+";", "<b>"+p2[0]+"</b>, "+pos+" &#8212 <br>")
@@ -318,6 +317,10 @@ function make_table(word, simple) {
                 table[i][j] = enu.join(", ")
             }
         }
+    }
+
+    for (var j = 0; j < table_height; j++) {
+        table[mlin][j] = handleText(table[mlin][j])
     }
 
     return table

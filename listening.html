@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="style.css"/>
+
+
+    <link rel="icon"
+          type="image/svg"
+          href="images/flags/ru.svg">
+
+    <script type="text/javascript" src="dep.js"></script>
+    <script type="text/javascript" src="words_handler.js"></script>
+    <script type="text/javascript" src="api_requests.js"></script>
+    <script type="text/javascript" src="search.js"></script>
+    <script type="text/javascript" src="jokes.js"></script>
+
+
+    <title>Vocabulary test</title>
+
+</head>
+<body>
+
+<section>
+    <nav>
+        <div>
+
+            <textarea type="text" id="your_input" cols=30 rows="5" placeholder="Type what you hear"></textarea>
+
+            <br>
+            <br>
+
+            <p id="audios">
+            </p>
+
+            <br>
+            <br>
+
+            <button class="mybutton" style="width: 300px" onclick="commit()">Commit</button>
+
+            <br>
+            <br>
+
+
+            <p id="explanation" style="width: 300px">
+            </p>
+
+            <br>
+            <br>
+
+            <div id="nextdiv" hidden="true">
+                <button class="mybutton" style="width: 300px" id="do_next_button" onclick="do_next()">Next phrase</button>
+            </div>
+        </div>
+    </nav>
+
+    <article>
+
+
+        <table>
+            <td width="30%" id="prono_part">
+
+            </td>
+
+            <td width="30%" id="ety_part">
+
+            </td>
+
+
+        </table>
+
+        <p id="content"></p>
+
+    </article>
+</section>
+
+
+<script>
+
+
+    let __mt = getCookie_("mt")
+    if (__mt == "") {
+        setCookie_("mt", "1", 1000)
+    }
+
+    let __inf = getCookie_("inf")
+    if (__inf == "") {
+        setCookie_("inf", "0", 1000)
+    }
+
+    let __rt = getCookie_("rt")
+    if (__rt == "") {
+        setCookie_("rt", "0", 1000)
+    }
+
+    let __un = getCookie_("un")
+    if (__un == "") {
+        setCookie_("un", "0", 1000)
+    }
+
+    let __syn = getCookie_("syn")
+    if (__syn == "") {
+        setCookie_("syn", "0", 1000)
+    }
+
+    let __rel = getCookie_("rel")
+    if (__rel == "") {
+        setCookie_("rel", "0", 1000)
+    }
+
+    let __der = getCookie_("der")
+    if (__der == "") {
+        setCookie_("der", "0", 1000)
+    }
+
+
+    //searchmean("language", false)
+
+
+    //audio.play()
+    //console.log("Audio", audio)
+    //document.getElementById("sh").src = "http://localhost:8080/api/sound/get?index=1&lang=nl"
+
+
+    let correct_answer = "";
+
+    function ontextappeared(samples) {
+        console.log("I see", samples)
+        let spl = samples.split("|");
+        correct_answer = spl[0]
+
+        document.getElementById("audios").innerHTML = "";
+
+        let html = "";
+        for (let q = 1; q < spl.length; q++) {
+            html += "<audio controls>";
+            let cl = ___api_get_root(8081) + "sound/obtain?index=" + spl[q] + "&lang=" + __real_lang
+            html += "<source src=\"" + cl + "\" type=\"audio/mp3\">";
+            html += "</audio>"
+        }
+
+        document.getElementById("audios").innerHTML = html;
+    }
+
+    function playaudio(audio, bloburl) {
+        console.log("Blob url", bloburl)
+        //audio.play()
+    }
+
+    function commit() {
+        let explanation = ""
+        inp = document.getElementById("your_input").value
+
+        explanation += "<h4>Correct answer</h4>" + handleText(correct_answer) + "<hr>";
+        explanation += "<h4>Your answer</h4>" + handleText(inp);
+
+        document.getElementById("explanation").innerHTML = explanation;
+        document.getElementById("nextdiv").hidden = false;
+    }
+
+    function do_next() {
+        document.getElementById("your_input").value = ""
+        document.getElementById("nextdiv").hidden = true;
+        ___api_get_listen(level, ontextappeared);
+        document.getElementById("explanation").innerHTML = "";
+    }
+
+    let level = 0
+    const __queryString = window.location.search;
+    const __urlParams = new URLSearchParams(__queryString);
+    if(urlParams.get('lvl') != undefined) {
+        level = urlParams.get('lvl')
+    }
+
+
+    do_next();
+
+</script>
+
+
+</body>
+</html>

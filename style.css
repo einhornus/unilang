@@ -118,23 +118,24 @@ nav {
 
 article {
     float: right;
-    padding: 0px;
-    width: 65%;
+    padding: 10px;
+    width: 70%;
     background-color: #c8ccd3;
 }
 
+body    {overflow-y:scroll;}
 
 
 .menu {
     position: absolute;
     top: 0px;
-    left: 250px;
+    left: 300px;
     z-index: 10;
 }
 
 
 .menu	{
-    width:150px;
+    width:350px;
     height:175px;
     padding:10px 5px 10px 5px;
     margin:12px 12px 12px 50px;
